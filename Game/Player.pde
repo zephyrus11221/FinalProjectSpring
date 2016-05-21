@@ -2,6 +2,7 @@ abstract class Player{
   protected int health;
   protected int speed;
   protected int strength;
+  protected int mana;
   
   void action(String a) {
     if (a.equals("jump")) {
@@ -22,4 +23,4 @@ abstract class Player{
   abstract void move();
   abstract void special();
   abstract void damage(Player other, int d);
-}}
+}

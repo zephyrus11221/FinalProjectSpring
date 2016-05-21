@@ -3,6 +3,7 @@ class Bandit extends Player{
     health = 100;
     speed = 10;
     strength = 15;
+    mana = 10;
   }
   
   void jump() {
