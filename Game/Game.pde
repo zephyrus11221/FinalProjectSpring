@@ -121,6 +121,8 @@ void draw(){
     if (key=='l') {
       output+="l";
     }
+    Bandit x = new Bandit();
+    x.display();
     System.out.println(output);
     c.write(pNum+output+' ');
   }
