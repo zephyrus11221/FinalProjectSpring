@@ -16,4 +16,7 @@ class Bandit extends Player{
   void damage(Player other, int d) {
     other.health -= d;
   }
+  void display(){
+    rect(270,240,150,100);
+  };
 }

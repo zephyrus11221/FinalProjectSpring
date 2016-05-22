@@ -6,4 +6,5 @@ abstract class Player{
   void combo(String a){};
   void punch(){};
   void damage(Player other, int d){};
+  void display(){}
 }
