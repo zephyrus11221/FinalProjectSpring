@@ -69,8 +69,9 @@ void draw(){
     if (input.equals("go")){
       stage = "Map0";
     }
-    if (input.length()==1&&pNum!=-1){
-      pNum=(int)Integer.parseInt(input);
+    if (input.substring(0,input.length()-1).equals("new p")&&pNum==-1){
+      System.out.println("hello");
+      pNum=(int)Integer.parseInt(input.substring(input.length()-1));
     }
   }
   if (stage.equals("Menu")){
