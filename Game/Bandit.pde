@@ -16,7 +16,10 @@ class Bandit extends Player{
   void damage(Player other, int d) {
     other.health -= d;
   }
-  void display(){
-    rect(270,240,150,100);
+  void display(float x, float y, String player){
+    PImage bandit;
+    bandit = loadImage("bandit_s.jpg");
+    image(bandit,x,y,100,150);
+    
   };
 }

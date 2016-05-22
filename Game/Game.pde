@@ -6,6 +6,7 @@ import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 import processing.net.*; 
 
+
 String output, input;
 
 PShape s;
@@ -47,6 +48,10 @@ boolean[] sDown;
 
 boolean combat;
 
+//character coordinates
+int xcor1 = 100;
+int ycor1 = 500;
+
 void setup(){
   size(1280, 720);
   startScreen = loadImage("menu.jpg");
@@ -59,7 +64,7 @@ void setup(){
   minim = new Minim(this);
   player = minim.loadFile("main.mp3", 2048);
   player.loop();
-  c = new Client(this, "192.168.1.10", 61271); 
+  c = new Client(this, "127.0.0.1", 61271); 
 }
 
 void draw(){
@@ -100,30 +105,36 @@ void draw(){
     image(b1, 640, 300, 1300, 176);
     image(b3, 640, 650, 1300, 400);
     image(b2, 640, 500, 1300, 176);
+
+    Player p1 = new Bandit();
     if (key=='a') {
-      output+="a";
-    }
-    if (key=='j') {
-      output+="j";
-    }
-    if (key=='k') {
-      output+="k";
-    }
-    if (key=='d') {
-      output+="d";
+      if (xcor1 > 0) {
+        xcor1 -= 10;
+      }
+      p1.display(xcor1,ycor1,"p1");
+      key = '\u0000';
     }
     if (key=='w') {
-      output+="w";
+      if (ycor1 > 0) {
+        ycor1 -= 10;
+      }
+      p1.display(xcor1,ycor1,"p1");
+      key = '\u0000';
     }
     if (key=='s') {
-      output+="s";
+      ycor1 += 10;
+      p1.display(xcor1,ycor1,"p1");
+      key = '\u0000';  
     }
-    if (key=='l') {
-      output+="l";
+    if (key=='d') {
+      xcor1 += 10;
+      p1.display(xcor1,ycor1,"p1");
+      key = '\u0000';
+    }      
+    else {
+      p1.display(xcor1,ycor1,"p1");
     }
-    Bandit x = new Bandit();
-    x.display();
-    System.out.println(output);
+    System.out.println(output);  
     c.write(pNum+output+' ');
   }
 }
