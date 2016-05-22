@@ -34,7 +34,7 @@ void draw() {
       output=input;
     }
     System.out.println(output);
-  }
+  }  
   s.write(output);
 }
 

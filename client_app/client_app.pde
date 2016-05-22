@@ -11,7 +11,7 @@ void setup() {
   // Connect to the local machine at port 5204.
   // This example will not run if you haven't
   // previously started a server on this port.
-  c = new Client(this, " 24.90.221.207", 5204); 
+  c = new Client(this, "127.0.0.1", 61271); 
   textAlign(CENTER, CENTER);
   background(255);
   brushWidth = 1;
