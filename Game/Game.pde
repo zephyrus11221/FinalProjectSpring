@@ -41,11 +41,7 @@ float rotate=PI/100;
 boolean[] ATKDown;
 boolean[] DEFDown;
 boolean[] JMPDown;
-boolean[] dDown;
-boolean[] aDown;
-boolean[] wDown;
-boolean[] sDown;
-
+boolean[] keys;
 boolean combat;
 
 //character coordinates
@@ -64,7 +60,8 @@ void setup(){
   minim = new Minim(this);
   player = minim.loadFile("main.mp3", 2048);
   player.loop();
-  c = new Client(this, "127.0.0.1", 61271); 
+  c = new Client(this, "127.0.0.1", 61271);
+  keys = new boolean[7];
 }
 
 void draw(){
@@ -107,34 +104,62 @@ void draw(){
     image(b2, 640, 500, 1300, 176);
 
     Player p1 = new Bandit();
-    if (key=='a') {
-      if (xcor1 > 0) {
-        xcor1 -= 10;
+    String action = "";
+    for (boolean x : keys) {
+      if (x) {
+        action += "T";
       }
-      p1.display(xcor1,ycor1,"p1");
-      key = '\u0000';
-    }
-    if (key=='w') {
-      if (ycor1 > 0) {
-        ycor1 -= 10;
+      else {
+        action += "F";
       }
-      p1.display(xcor1,ycor1,"p1");
-      key = '\u0000';
-    }
-    if (key=='s') {
-      ycor1 += 10;
-      p1.display(xcor1,ycor1,"p1");
-      key = '\u0000';  
-    }
-    if (key=='d') {
-      xcor1 += 10;
-      p1.display(xcor1,ycor1,"p1");
-      key = '\u0000';
-    }      
-    else {
-      p1.display(xcor1,ycor1,"p1");
     }
     System.out.println(output);  
-    c.write(pNum+output+' ');
+    c.write(pNum+" "+action+' ');
   }
 }
+  void keyPressed() {
+    if (key=='a') {
+      keys[0] = true;
+    }
+    if (key=='w') {
+      keys[1] = true;
+    }
+    if (key=='s') {
+      keys[2] = true;
+    }
+    if (key=='d') {
+      keys[3] = true;
+    }
+    if (key=='j') {
+      keys[4] = true;
+    }
+    if (key=='k') {
+      keys[5] = true;
+    }
+    if (key=='l') {
+      keys[6] = true;
+    }
+  }
+  void keyReleased() {
+    if (key=='a') {
+      keys[0] = false;
+    }
+    if (key=='w') {
+      keys[1] = false;
+    }
+    if (key=='s') {
+      keys[2] = false;
+    }
+    if (key=='d') {
+      keys[3] = false;
+    }
+    if (key=='j') {
+      keys[4] = false;
+    }
+    if (key=='k') {
+      keys[5] = false;
+    }
+    if (key=='l') {
+      keys[6] = false;
+    }
+  }   
