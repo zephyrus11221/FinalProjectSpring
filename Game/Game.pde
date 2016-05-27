@@ -41,7 +41,7 @@ float rotate=PI/100;
 boolean[] ATKDown;
 boolean[] DEFDown;
 boolean[] JMPDown;
-boolean[] keys;
+byte[] keys;
 boolean combat;
 
 //character coordinates
@@ -61,7 +61,7 @@ void setup(){
   player = minim.loadFile("main.mp3", 2048);
   player.loop();
   c = new Client(this, "127.0.0.1", 61271);
-  keys = new boolean[7];
+  keys = new byte[7];
 }
 
 void draw(){
@@ -104,62 +104,56 @@ void draw(){
     image(b2, 640, 500, 1300, 176);
 
     Player p1 = new Bandit();
-    String action = "";
-    for (boolean x : keys) {
-      if (x) {
-        action += "T";
-      }
-      else {
-        action += "F";
-      }
-    }
+
     System.out.println(output);  
-    c.write(pNum+" "+action+' ');
+    c.write(pNum+" "+' ');
   }
+
+
 }
   void keyPressed() {
     if (key=='a') {
-      keys[0] = true;
+      keys[0] = 'T';
     }
     if (key=='w') {
-      keys[1] = true;
+      keys[1] = 'T';
     }
     if (key=='s') {
-      keys[2] = true;
+      keys[2] = 'T';
     }
     if (key=='d') {
-      keys[3] = true;
+      keys[3] = 'T';
     }
     if (key=='j') {
-      keys[4] = true;
+      keys[4] = 'T';
     }
     if (key=='k') {
-      keys[5] = true;
+      keys[5] = 'T';
     }
     if (key=='l') {
-      keys[6] = true;
+      keys[6] = 'T';
     }
   }
   void keyReleased() {
     if (key=='a') {
-      keys[0] = false;
+      keys[0] = 'F';
     }
     if (key=='w') {
-      keys[1] = false;
+      keys[1] = 'F';
     }
     if (key=='s') {
-      keys[2] = false;
+      keys[2] = 'F';
     }
     if (key=='d') {
-      keys[3] = false;
+      keys[3] = 'F';
     }
     if (key=='j') {
-      keys[4] = false;
+      keys[4] = 'F';
     }
     if (key=='k') {
-      keys[5] = false;
+      keys[5] = 'F';
     }
     if (key=='l') {
-      keys[6] = false;
+      keys[6] = 'F';
     }
   }   
