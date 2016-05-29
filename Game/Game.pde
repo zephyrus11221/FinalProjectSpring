@@ -5,9 +5,11 @@ import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 import processing.net.*; 
-
+import java.util.*;
 
 String output, input;
+
+ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 
 PShape s;
 PShape s2;
@@ -15,6 +17,8 @@ PShape s2;
 Player[] p;
 
 int pNum = -1;
+
+int test = 0;
 
 float y=600;
 float x=640;
@@ -104,9 +108,19 @@ void draw(){
     image(b2, 640, 500, 1300, 176);
 
     Player p1 = new Bandit();
-
-    System.out.println(output);  
+    p1.display(xcor1, ycor1, "hi");
+    test++;
+    text("hi", 600+test, 500);
+//    System.out.println(output);  
     c.write(pNum+" "+' ');
+    if(projectiles!=null){
+      for (int i = 0; i<projectiles.size(); i++){
+        projectiles.get(i).display();
+        if(projectiles.get(i).xCor()>1280||projectiles.get(i).xCor()<0){
+          projectiles.remove(i);
+        }
+      }
+    }
   }
 
 
@@ -126,6 +140,7 @@ void draw(){
     }
     if (key=='j') {
       keys[4] = 'T';
+      projectiles.add(new Projectile(xcor1, ycor1));
     }
     if (key=='k') {
       keys[5] = 'T';
