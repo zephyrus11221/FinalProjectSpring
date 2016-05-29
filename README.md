@@ -36,3 +36,15 @@ Day 5: Player movement begun, to be modified.
 Bugs: Same as before, and players can only move in one direction at a time.
 
 --------------------------------------------------
+
+Day 6: Player movement update in progress, Projectile class begun.
+
+Bugs: Same as before.
+
+--------------------------------------------------
+
+Day 7: Projectile Class complete.
+
+Bugs: Same as before.
+
+--------------------------------------------------

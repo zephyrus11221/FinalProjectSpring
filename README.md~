@@ -7,7 +7,7 @@ Required libraries: Minim
 =================================================
 
 CHANGELOG:
-Day 1: Server for the game begun
+Day 1: Server for the game begun, main menu complete.
 
 Bugs: none
 
@@ -25,4 +25,14 @@ Bugs: none
 
 --------------------------------------------------
 
-Day 4: Player class added, Bandit extension
+Day 4: Player class added, Bandit extension. Server operates correctly.
+
+Bugs: Player 2 is skipped in the player count, as in one player joins as player 1, and the next joins as player 3.
+
+--------------------------------------------------
+
+Day 5: Player movement begun, to be modified.
+
+Bugs: Same as before, and players can only move in one direction at a time.
+
+--------------------------------------------------
