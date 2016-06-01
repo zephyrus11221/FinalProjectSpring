@@ -6,13 +6,14 @@ class Projectile{
   int yCor, front, xCor, time, frames;
   boolean stun; //if projectile is able to be stopped
   boolean test = false; //not a real projectile if true
+  boolean display;
   
   Projectile(int x, int y){
     test = true;
     xCor = x;
     yCor = y;
-    velocity = 3;
-    frames = 1;
+    velocity = 30;
+    frames = 5;
   }
   
   Projectile(PImage[] main, int vel, int hp, int x, int y, int size, boolean _stun){
@@ -43,15 +44,19 @@ class Projectile{
   }
   
   void display(){
-    if(millis()-time>1000){
+    int nTime = millis();
+    if(nTime-time>1000){
       time = millis();
     }
-    for(int x = 1; x<=frames; x++){
-      if(millis()-time<1000/frames*x){
+    System.out.println(nTime-time);
+    display = true;
+    for(int x = 0; x<=frames; x++){
+      if(nTime-time<(1000/frames)*x && display){
+        display = false;
         xCor+=velocity;
-        System.out.println("hi");
+        System.out.println(""+x);
         if (test){
-          text("hi", xCor, yCor);
+          text(""+x, xCor, yCor);
         }else{
           image(disp[x-1], xCor, yCor);
           if (chase!=null){
