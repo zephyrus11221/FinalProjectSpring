@@ -7,7 +7,7 @@ import ddf.minim.ugens.*;
 import processing.net.*; 
 import java.util.*;
 
-String output, input;
+byte[] output, input;
 
 ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 
@@ -49,9 +49,8 @@ byte[] keys;
 boolean combat;
 
 //character coordinates
-int xcor1 = 100;
-int ycor1 = 500;
-
+int xcor1;
+int ycor1;
 void setup(){
   size(1280, 720);
   startScreen = loadImage("menu.jpg");
@@ -69,16 +68,19 @@ void setup(){
 }
 
 void draw(){
-  output = "";
+  output = new byte[8];
   if (c.available()>0){
-    input = c.readString();
-    if (input.equals("go")){
+    input = c.readBytes();
+    if (input[0] == '1'){
       stage = "Map0";
     }
-    if (input.substring(0,input.length()-1).equals("new p")&&pNum==-1){
-      System.out.println("hello");
-      pNum=(int)Integer.parseInt(input.substring(input.length()-1));
+    if (input[0] == 'p') {
+    pNum = (int) input[1];
+    p = new Player[1];
+    Player p1 = new Bandit();
+    p[0] = p1;
     }
+    
   }
   if (stage.equals("Menu")){
     background(10,30,100);
@@ -89,7 +91,7 @@ void draw(){
     text("Press R to begin", 640, 300);
     text("Press I to view instructions", 640, 450);
     if (key=='r') {
-      c.write("ready");
+      c.write(new byte[]{'r'});
       combat = true;
     }
     if (key=='i'){
@@ -106,13 +108,17 @@ void draw(){
     image(b1, 640, 300, 1300, 176);
     image(b3, 640, 650, 1300, 400);
     image(b2, 640, 500, 1300, 176);
-
-    Player p1 = new Bandit();
-    p1.display(xcor1, ycor1, "hi");
+    process(input);
+    p[0].display("hi");
+    output[0] = (byte) pNum;
+    for (int x = 0; x < keys.length; x++) {
+      output[x+1] = keys[x];
+    }
     test++;
     text("hi", 600+test, 500);
 //    System.out.println(output);  
-    c.write(pNum+" "+' ');
+    c.write(output);
+    
     if(projectiles!=null){
       for (int i = 0; i<projectiles.size(); i++){
         projectiles.get(i).display();
@@ -125,6 +131,24 @@ void draw(){
 
 
 }
+void process(byte[] data) {
+  int x = data.length / 8;
+  for (int y = 0; y < x; y++) {
+    if (data[y*8+2] == 'T'){
+      p[0].setx(-10);
+    }
+    if (data[y*8+3] == 'T'){
+      p[0].sety(-10);
+    }
+    if (data[y*8+4] == 'T'){
+      p[0].sety(10);
+    }
+    if (data[y*8+5] == 'T'){
+      p[0].setx(10);
+    }
+  }
+}
+  
   void keyPressed() {
     if (key=='a') {
       keys[0] = 'T';

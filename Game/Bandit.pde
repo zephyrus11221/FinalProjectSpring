@@ -3,6 +3,8 @@ class Bandit extends Player{
     health = 100;
     strength = 15;
     mana = 10;
+    xcor = 100;
+    ycor = 150;
   }
   void punch(){
     damage(this,strength);
@@ -16,10 +18,16 @@ class Bandit extends Player{
   void damage(Player other, int d) {
     other.health -= d;
   }
-  void display(float x, float y, String player){
+  void display(String player){
     PImage bandit;
     bandit = loadImage("bandit_s.jpg");
-    image(bandit,x,y,100,150);
+    image(bandit,xcor,ycor,100,150);
     
-  };
+  }
+  void setx(int n){
+    xcor += n;
+  }  
+  void sety(int n){
+    ycor += n;
+  }
 }
