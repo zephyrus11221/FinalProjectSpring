@@ -63,7 +63,7 @@ void setup(){
   minim = new Minim(this);
   player = minim.loadFile("main.mp3", 2048);
   player.loop();
-  c = new Client(this, "127.0.0.1", 61271);
+  c = new Client(this, "192.168.0.11", 19876);
   keys = new byte[7];
 }
 
@@ -71,9 +71,19 @@ void draw(){
   output = new byte[8];
   if (c.available()>0){
     input = c.readBytes();
-    System.out.println();
-    for (byte n : input) {
-      System.out.print(n+ " ");
+     if (input.length > 8){
+      if (Arrays.binarySearch(input,2,input.length,input[0]) > 0){
+        byte[] temp = new byte[Arrays.binarySearch(input,2,input.length,input[0])];
+        for (int v = 0; v < temp.length; v++) {
+          temp[v] = input[v];
+        }
+        input = new byte[temp.length];
+        input = temp;
+      }
+      System.out.println();
+      for (byte n : input) {
+        System.out.print(n+ " ");
+      }
     }
     if (input[0] == '1'){
       stage = "Map0";
@@ -84,7 +94,7 @@ void draw(){
     Player p1 = new Bandit();
     p[0] = p1;
     }
-    
+
   }
   if (stage.equals("Menu")){
     background(10,30,100);
@@ -120,11 +130,11 @@ void draw(){
     }
     test++;
     text("hi", 600+test, 500);
-//    System.out.println(output);  
-    System.out.println();
-    for (byte v : output) {
-      System.out.print(v+ " ");
-    }
+    //System.out.println(output);  
+    //System.out.println();
+    //for (byte v : output) {
+    //  System.out.print(v+ " ");
+    //}
     c.write(output);
     
     if(projectiles!=null){
@@ -140,23 +150,23 @@ void draw(){
 
 }
 void process(byte[] data) {
-  //int x = data.length / 8;
-  for (int y = 0; y < 1; y++) {
+  int x = p.length;
+  for (int y = 0; y < x; y++) {
     if (data[y*8+2] == 8){
-      p[0].setx(-10);
+      p[y].setx(-10);
     }
     if (data[y*8+3] == 8){
-      p[0].sety(-10);
+      p[y].sety(-10);
     }
     if (data[y*8+4] == 8){
-      p[0].sety(10);
+      p[y].sety(10);
     }
     if (data[y*8+5] == 8){
-      p[0].setx(10);
+      p[y].setx(10);
     }
   }
 }
-  
+
   void keyPressed() {
     if (key=='a') {
       keys[0] = 8;

@@ -48,3 +48,7 @@ Day 7: Projectile Class complete.
 Bugs: Same as before.
 
 --------------------------------------------------
+
+Day 8: Player movement finished.
+
+Bugs: Player count 
