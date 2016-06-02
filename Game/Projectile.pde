@@ -48,14 +48,13 @@ class Projectile{
     if(nTime-time>1000){
       time = millis();
     }
-    System.out.println(nTime-time);
     display = true;
     for(int x = 0; x<=frames; x++){
       if(nTime-time<(1000/frames)*x && display){
         display = false;
         xCor+=velocity;
-        System.out.println(""+x);
         if (test){
+          //System.out.println(x);
           text(""+x, xCor, yCor);
         }else{
           image(disp[x-1], xCor, yCor);

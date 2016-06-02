@@ -4,7 +4,7 @@ class Bandit extends Player{
     strength = 15;
     mana = 10;
     xcor = 100;
-    ycor = 150;
+    ycor = 550;
   }
   void punch(){
     damage(this,strength);
@@ -20,8 +20,8 @@ class Bandit extends Player{
   }
   void display(String player){
     PImage bandit;
-    bandit = loadImage("bandit_s.jpg");
-    image(bandit,xcor,ycor,100,150);
+    bandit = loadImage("bandit idle.png");
+    image(bandit,xcor,ycor,120,135);
     
   }
   void setx(int n){
