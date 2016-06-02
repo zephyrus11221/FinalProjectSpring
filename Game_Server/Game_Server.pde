@@ -40,7 +40,9 @@ void draw() {
           z++;
         }
       }
-      System.out.println(output);
+      for (byte u : output) {
+        System.out.print(u+" ");
+      }
     }  
     s.write(output);
   }

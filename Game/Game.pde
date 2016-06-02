@@ -18,7 +18,7 @@ Player[] p;
 
 int pNum = -1;
 
-//int test = 0;
+int test = 0;
 
 float y=600;
 float x=640;
@@ -71,6 +71,10 @@ void draw(){
   output = new byte[8];
   if (c.available()>0){
     input = c.readBytes();
+    System.out.println();
+    for (byte n : input) {
+      System.out.print(n+ " ");
+    }
     if (input[0] == '1'){
       stage = "Map0";
     }
@@ -108,10 +112,18 @@ void draw(){
     image(b1, 640, 300, 1300, 176);
     image(b3, 640, 650, 1300, 400);
     image(b2, 640, 500, 1300, 176);
+    process(input);
     p[0].display("hi");
     output[0] = (byte) pNum;
     for (int x = 0; x < keys.length; x++) {
       output[x+1] = keys[x];
+    }
+    test++;
+    text("hi", 600+test, 500);
+//    System.out.println(output);  
+    System.out.println();
+    for (byte v : output) {
+      System.out.print(v+ " ");
     }
     c.write(output);
     
@@ -128,84 +140,67 @@ void draw(){
 
 }
 void process(byte[] data) {
-  System.out.println(data.length);
-  int x = data.length / 8;
-  for (int y = 0; y < x; y++) {
-    System.out.println(y);
-    if (data[y*8+1] == 'T'){
-      p[y].setx(-10);
+  //int x = data.length / 8;
+  for (int y = 0; y < 1; y++) {
+    if (data[y*8+2] == 8){
+      p[0].setx(-10);
     }
-    if (data[y*8+2] == 'T'){
-      p[y].sety(-10);
+    if (data[y*8+3] == 8){
+      p[0].sety(-10);
     }
-    if (data[y*8+3] == 'T'){
-      p[y].sety(10);
+    if (data[y*8+4] == 8){
+      p[0].sety(10);
     }
-    if (data[y*8+4] == 'T'){
-      p[y].setx(10);
+    if (data[y*8+5] == 8){
+      p[0].setx(10);
     }
   }
 }
-  void clientEvent(Client someClient){
-    input = c.readBytes();
-    System.out.println(input[0]);
-    if (input[0] == '1'){
-      stage = "Map0";
-    }
-    if (input[0] == 'p') {
-      pNum = (int) input[1];
-      p = new Player[1];
-      Player p1 = new Bandit();
-      p[0] = p1;
-    }
-    System.out.println("hi");
-    process(input); 
-  }
   
   void keyPressed() {
     if (key=='a') {
-      keys[0] = 'T';
+      keys[0] = 8;
     }
     if (key=='w') {
-      keys[1] = 'T';
+      keys[1] = 8;
     }
     if (key=='s') {
-      keys[2] = 'T';
+      keys[2] = 8;
     }
     if (key=='d') {
-      keys[3] = 'T';
+      keys[3] = 8;
     }
     if (key=='j') {
-      keys[4] = 'T';
-      projectiles.add(new Projectile(p[0].xcor, p[0].ycor));
+      keys[4] = 8;
+      //projectiles.add(new Projectile(xcor1, ycor1));
     }
     if (key=='k') {
-      keys[5] = 'T';
+      keys[5] = 8;
     }
     if (key=='l') {
-      keys[6] = 'T';
+      keys[6] = 8;
     }
   }
   void keyReleased() {
     if (key=='a') {
-      keys[0] = 'F';
+      keys[0] = 0;
     }
     if (key=='w') {
-      keys[1] = 'F';
+      keys[1] = 0;
     }
     if (key=='s') {
-      keys[2] = 'F';
+      keys[2] = 0;
     }
     if (key=='d') {
-      keys[3] = 'F';
+      keys[3] = 0;
     }
     if (key=='j') {
-      keys[4] = 'F';
+      keys[4] = 0;
     }
     if (key=='k') {
-      keys[5] = 'F';
+      keys[5] = 0;
     }
     if (key=='l') {
-      keys[6] = 'F';
+      keys[6] = 0;
     }
   }   
