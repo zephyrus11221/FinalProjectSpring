@@ -110,7 +110,7 @@ void draw(){
     b3 = loadImage("back3.JPG");
     imageMode(CENTER);
     image(b1, 640, 300, 1300, 176);
-    image(b3, 640, 650, 1300, 400);
+    image(b3, 640, 850, 1300, 600);
     image(b2, 640, 500, 1300, 176);
     process(input);
     p[0].display("hi");
@@ -118,8 +118,7 @@ void draw(){
     for (int x = 0; x < keys.length; x++) {
       output[x+1] = keys[x];
     }
-    test++;
-    text("hi", 600+test, 500);
+    text(""+p[0].xcor+", "+p[0].ycor, 600, 500);
 //    System.out.println(output);  
     System.out.println();
     for (byte v : output) {
@@ -129,6 +128,7 @@ void draw(){
     
     if(projectiles!=null){
       for (int i = 0; i<projectiles.size(); i++){
+        System.out.println("hi");
         projectiles.get(i).display();
         if(projectiles.get(i).xCor()>1280||projectiles.get(i).xCor()<0){
           projectiles.remove(i);
@@ -143,16 +143,24 @@ void process(byte[] data) {
   //int x = data.length / 8;
   for (int y = 0; y < 1; y++) {
     if (data[y*8+2] == 8){
-      p[0].setx(-10);
+      if(p[y].xcor>40){
+        p[y].setx(-7);
+      }
     }
     if (data[y*8+3] == 8){
-      p[0].sety(-10);
+      if(p[y].ycor>500){
+        p[y].sety(-4);
+      }
     }
     if (data[y*8+4] == 8){
-      p[0].sety(10);
+      if(p[y].ycor<650){
+        p[y].sety(4);
+      }
     }
     if (data[y*8+5] == 8){
-      p[0].setx(10);
+      if(p[y].xcor<1230){
+        p[y].setx(7);
+      }
     }
   }
 }
@@ -172,7 +180,7 @@ void process(byte[] data) {
     }
     if (key=='j') {
       keys[4] = 8;
-      //projectiles.add(new Projectile(xcor1, ycor1));
+      projectiles.add(new Projectile(p[0].xcor, p[0].ycor));
     }
     if (key=='k') {
       keys[5] = 8;
