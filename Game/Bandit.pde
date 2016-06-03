@@ -5,9 +5,10 @@ class Bandit extends Player{
     mana = 10;
     xcor = 100;
     ycor = 550;
+    right = true;
   }
-  void punch(){
-    damage(this,strength);
+  void punch(boolean p){
+    punch = p;
   }
   void special(){
     strength += 10;
@@ -19,10 +20,14 @@ class Bandit extends Player{
     other.health -= d;
   }
   void display(String player){
-    PImage bandit;
-    bandit = loadImage("bandit idle.png");
-    image(bandit,xcor,ycor,120,135);
-    
+    if(punch){}
+    else if(state.equals("idle")){
+      PImage bandit;
+      bandit = loadImage("bandit_s.jpg");
+      image(bandit,x,y,100,150);
+    }
+    else if(state.equals("walk")){}
+    else if(state.equals("run")){}
   }
   void setx(int n){
     xcor += n;

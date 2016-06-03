@@ -15,12 +15,18 @@ class Henry extends Player{
     strength -= 10;
   }
   
-  void combo(){}
+  String combo(){
+    return "";
+  }
   
   void display(float x, float y, String player){
-    PImage bandit;
-    bandit = loadImage("bandit_s.jpg");
-    image(bandit,x,y,100,150);
-    
-  };
+    if(punch){}
+    else if(state.equals("idle")){
+      PImage bandit;
+      bandit = loadImage("bandit_s.jpg");
+      image(bandit,x,y,100,150);
+    }
+    else if(state.equals("walk")){}
+    else if(state.equals("run")){}
+  }
 }
