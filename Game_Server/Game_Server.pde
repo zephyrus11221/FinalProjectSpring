@@ -3,7 +3,6 @@ import processing.net.*;
 Server s;
 byte[] input, output;
 int data[];
-
 boolean[] ready;
 //int port = 5204;
 
@@ -30,13 +29,19 @@ void draw() {
       else{
         output[0] = '3';
       }
+      output[1] = (byte) s.clientCount;
       if (input.length > 1) {
         int z = x*9+2;
         System.out.println(output.length);
         System.out.println(input.length);
       
-        for (int y = 0; y < input.length; y++) {
+        for (int y = 0; y < 9; y++) {
+          if (y < input.length) {
           output[z] = input[y];
+          }
+          else {
+            output[z] = 0;
+          }
           z++;
         }
       }
@@ -51,6 +56,5 @@ void draw() {
 void serverEvent(Server someServer, Client someClient) {
   println("We have a new client: " + someClient.ip());
   s.write(new byte[]{'p',(byte) s.clientCount});
-  output=new byte[9*s.clientCount+2];
-  output[1] = (byte) s.clientCount;
+  output= new byte[9*s.clientCount+2];
 }
