@@ -63,15 +63,19 @@ void setup(){
   minim = new Minim(this);
   player = minim.loadFile("main.mp3", 2048);
   player.loop();
-  c = new Client(this, "192.168.0.17", 61271);
+  c = new Client(this, "127.0.0.1", 61271);
   keys = new byte[7];
 }
 
 void draw(){
   output = new byte[9];
   if (c.available()>0){
-    input = c.readBytes();
-     if (input.length > 8){
+    input = c.readBytesUntil(9);
+    if (input == null) {
+      input = new byte[]{2};
+    }
+    c.clear();
+     /*if (input.length > 8){
       if (Arrays.binarySearch(input,2,input.length,input[0]) > 0){
         byte[] temp = new byte[Arrays.binarySearch(input,2,input.length,input[0])];
         for (int v = 0; v < temp.length; v++) {
@@ -79,14 +83,19 @@ void draw(){
         }
         input = new byte[temp.length];
         input = temp;
-      }
+      }*/
+      //System.out.println("wOrks");
       System.out.println();
       for (byte n : input) {
         System.out.print(n+ " ");
       }
     }
+    //System.out.println("wOrks");
+      
      if (input[0] == '1'){
-      stage = "Map0";
+      //System.out.println("wOrks");
+      
+       stage = "Map0";
       if ((int) input[1] > p.length) {
         Player[] temp = new Player[(int) input[1]];
         for (int h = 0; h < temp.length; h++) {
@@ -101,15 +110,15 @@ void draw(){
       }
     }
     if (input[0] == 'p') {
+      System.out.println("horray");
     pNum = (int) input[1];
     p = new Player[pNum];
     int x = p.length;
       for (int y = 0; y < x; y++) {
       p[y] = new Bandit();
-  }
+  }  
     }
 
-  }
   if (stage.equals("Menu")){
     background(10,30,100);
     image(startScreen, 409, 100, 462, 123);
@@ -142,6 +151,10 @@ void draw(){
     }
     output[0] = (byte) pNum;
     output[1] = 'B';
+    try {
+      wait(2000);
+    }catch (Exception e) {
+    }
     for (int x = 0; x < keys.length; x++) {
       output[x+2] = keys[x];
     }
@@ -167,32 +180,31 @@ void draw(){
 
 
 }
-void process(byte[] data) {
-  int x = p.length;
-  for (int y = 0; y < x; y++) {
-      if (data[y*9+4] == 8){
-        if(p[data[y*9+2]-1].xcor>40){
-          p[data[y*9+2]-1].setx(-7);
+
+  void process(byte[] data) {
+      if (data[2]-1 < 10) {
+      if (data[4] == 8){
+        if(p[data[2]-1].xcor>40){
+          p[data[2]-1].setx(-7);
         }
       }
-      if (data[y*9+5] == 8){
-        if(p[data[y*9+2]-1].ycor>500){
-          p[data[y*9+2]-1].sety(-4);
+      if (data[5] == 8){
+        if(p[data[2]-1].ycor>500){
+          p[data[2]-1].sety(-4);
         }
       }
-      if (data[y*9+6] == 8){
-        if(p[data[y*9+2]-1].ycor<650){
-          p[data[y*9+2]-1].sety(4);
+      if (data[6] == 8){
+        if(p[data[2]-1].ycor<650){
+          p[data[2]-1].sety(4);
         }
       }
-      if (data[y*9+7] == 8){
-        if(p[data[y*9+2]-1].xcor<1230){
-          p[data[y*9+2]-1].setx(7);
+      if (data[7] == 8){
+        if(p[data[2]-1].xcor<1230){
+          p[data[2]-1].setx(7);
         }
+      }
       }
   }
-}
-
   void keyPressed() {
     if (key=='a') {
       keys[0] = 8;

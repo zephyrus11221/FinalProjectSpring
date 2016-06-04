@@ -16,7 +16,6 @@ void setup() {
 }
 
 void draw() {
-  for (int x = 0; x < s.clientCount; x++) {  
     Client c = s.available();
     if (c!=null) {  
       input = c.readBytes();
@@ -31,7 +30,7 @@ void draw() {
       }
       output[1] = (byte) s.clientCount;
       if (input.length > 1) {
-        int z = x*9+2;
+        int z = 2;
         System.out.println(output.length);
         System.out.println(input.length);
       
@@ -50,11 +49,12 @@ void draw() {
       }
     }  
     s.write(output);
-  }
+    s.write(9);
 }
 
 void serverEvent(Server someServer, Client someClient) {
   println("We have a new client: " + someClient.ip());
   s.write(new byte[]{'p',(byte) s.clientCount});
-  output= new byte[9*s.clientCount+2];
+  s.write(9);
+  output= new byte[11];
 }
