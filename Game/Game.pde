@@ -63,12 +63,12 @@ void setup(){
   minim = new Minim(this);
   player = minim.loadFile("main.mp3", 2048);
   player.loop();
-  c = new Client(this, "192.168.0.11", 19876);
+  c = new Client(this, "127.0.0.1", 61271);
   keys = new byte[7];
 }
 
 void draw(){
-  output = new byte[8];
+  output = new byte[9];
   if (c.available()>0){
     input = c.readBytes();
      if (input.length > 8){
@@ -90,9 +90,8 @@ void draw(){
     }
     if (input[0] == 'p') {
     pNum = (int) input[1];
-    p = new Player[1];
-    Player p1 = new Bandit();
-    p[0] = p1;
+    p = new Player[pNum];
+    ;
     }
 
   }
@@ -123,10 +122,13 @@ void draw(){
     image(b3, 640, 850, 1300, 600);
     image(b2, 640, 500, 1300, 176);
     process(input);
-    p[0].display("hi");
+    for ( Player g : p) {
+      g.display("hi");
+    }
     output[0] = (byte) pNum;
+    output[1] = 'B';
     for (int x = 0; x < keys.length; x++) {
-      output[x+1] = keys[x];
+      output[x+2] = keys[x];
     }
     text(""+p[0].xcor+", "+p[0].ycor, 600, 500);
 //    System.out.println(output);  
@@ -153,22 +155,25 @@ void draw(){
 void process(byte[] data) {
   int x = p.length;
   for (int y = 0; y < x; y++) {
-    if (data[y*8+2] == 8){
+    p[y] = new Bandit();
+  }
+  for (int y = 0; y < x; y++) {
+    if (data[y*9+4] == 8){
       if(p[y].xcor>40){
         p[y].setx(-7);
       }
     }
-    if (data[y*8+3] == 8){
+    if (data[y*9+5] == 8){
       if(p[y].ycor>500){
         p[y].sety(-4);
       }
     }
-    if (data[y*8+4] == 8){
+    if (data[y*9+6] == 8){
       if(p[y].ycor<650){
         p[y].sety(4);
       }
     }
-    if (data[y*8+5] == 8){
+    if (data[y*9+7] == 8){
       if(p[y].xcor<1230){
         p[y].setx(7);
       }

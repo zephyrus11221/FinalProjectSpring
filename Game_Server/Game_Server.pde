@@ -31,7 +31,7 @@ void draw() {
         output[0] = '3';
       }
       if (input.length > 1) {
-        int z = x*8+1;
+        int z = x*9+2;
         System.out.println(output.length);
         System.out.println(input.length);
       
@@ -51,5 +51,6 @@ void draw() {
 void serverEvent(Server someServer, Client someClient) {
   println("We have a new client: " + someClient.ip());
   s.write(new byte[]{'p',(byte) s.clientCount});
-  output= new byte[8*s.clientCount+1];
+  output=new byte[9*s.clientCount+2];
+  output[1] = (byte) s.clientCount;
 }
