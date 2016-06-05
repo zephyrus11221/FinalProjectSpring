@@ -31,8 +31,6 @@ void draw() {
       output[1] = (byte) s.clientCount;
       if (input.length > 1) {
         int z = 2;
-        System.out.println(output.length);
-        System.out.println(input.length);
       
         for (int y = 0; y < 9; y++) {
           if (y < input.length) {
@@ -44,12 +42,13 @@ void draw() {
           z++;
         }
       }
+      System.out.println();
       for (byte u : output) {
         System.out.print(u+" ");
       }
-    }  
-    s.write(output);
-    s.write(9);
+    }
+      s.write(output);
+      s.write(9);
 }
 
 void serverEvent(Server someServer, Client someClient) {

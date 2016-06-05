@@ -69,10 +69,11 @@ void setup(){
 
 void draw(){
   output = new byte[9];
+  //input = new byte[]{2,0,0,0,0,0};
   if (c.available()>0){
     input = c.readBytesUntil(9);
     if (input == null) {
-      input = new byte[]{2};
+      input = new byte[]{2,0,0,0,0,0};
     }
     c.clear();
      /*if (input.length > 8){
@@ -85,13 +86,14 @@ void draw(){
         input = temp;
       }*/
       //System.out.println("wOrks");
-      System.out.println();
+      println();
+      System.out.println("Player:" + pNum);
       for (byte n : input) {
         System.out.print(n+ " ");
       }
-    }
-    //System.out.println("wOrks");
       
+     } //<>//
+    //System.out.println("wOrks");
      if (input[0] == '1'){
       //System.out.println("wOrks");
       
@@ -177,12 +179,10 @@ void draw(){
       }
     }
   }
-
-
 }
 
   void process(byte[] data) {
-      if (data[2]-1 < 10) {
+      if (data.length == 12 && data[2]-1 < 10 && data[2]-1 >= 0) {
       if (data[4] == 8){
         if(p[data[2]-1].xcor>40){
           p[data[2]-1].setx(-7);
