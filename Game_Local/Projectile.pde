@@ -16,7 +16,7 @@ class Projectile{
     frames = 5;
   }
   
-  Projectile(PImage[] main, int vel, int hp, int x, int y, int size, boolean _stun){
+  Projectile(String[] main, String[] chase, int vel, int hp, int x, int y, int size, boolean _stun){
     disp = main;
     velocity = vel;
     health = hp;

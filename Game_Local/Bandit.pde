@@ -19,6 +19,7 @@ class Bandit extends Player{
     strength -= 10;
   }
   void combo(){}
+  
   void damage(Player other, int d) {
     other.health -= d;
   }
