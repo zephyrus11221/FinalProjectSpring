@@ -1,6 +1,6 @@
 class Projectile{
-  PImage[] disp;
-  PImage[] chase; //might be null
+  String[] disp;
+  String[] chase; //might be null
   int velocity;
   int health; //negative means invincible
   int yCor, front, xCor, time, frames;
@@ -57,9 +57,11 @@ class Projectile{
           //System.out.println(x);
           text(""+x, xCor, yCor);
         }else{
-          image(disp[x-1], xCor, yCor);
+          PImage p = loadImage(disp[x-1]);
+          image(p, xCor, yCor);
           if (chase!=null){
-            image(chase[x-1], xCor, yCor);
+            PImage c = loadImage(chase[x-1]);
+            image(c, xCor, yCor);
           }
         }
       }

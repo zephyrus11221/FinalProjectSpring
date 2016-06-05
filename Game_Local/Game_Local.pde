@@ -89,7 +89,7 @@ void draw(){
         System.out.print(n+ " ");
       }
       
-     } //<>//
+     } //<>// //<>//
     //System.out.println("wOrks");
      if (input[0] == '1'){
       //System.out.println("wOrks");
@@ -200,6 +200,37 @@ void draw(){
           p[data[7]-1].setx(7);
         }
       }
+      if (data[4] == 8 && data[5] == 8 && data[6] == 8) {
+        //combo
+         projectiles.add(new Projectile(p[0].xcor, p[0].ycor));
+      }
+      else if (data[4] == 8) {
+        //punch
+        if (data[7] == 1 && keys2[6]== 8) {
+          //punch blocked
+        }
+        else if (data[7] == 2 && keys1[6]== 8) {
+          //punch blocked
+        }
+        else if (data[7] == 1) {
+          if ( (abs(p[0].xcor - p[1].xcor) < 70) || (abs(p[0].ycor - p[1].ycor) < 70) ) {
+            p[0].punch(p[1]);
+          }
+        }
+        else if (data[7] == 2) {
+          if ( (abs(p[0].xcor - p[1].xcor) < 70) || (abs(p[0].ycor - p[1].ycor) < 70) ){
+            p[1].punch(p[0]);
+          }
+        }
+      }
+      else if (data[5] == 8) {
+        //jump
+      }
+      else if (data[6] == 8) {
+        //block
+      }
+      
+    
   }
   void keyPressed() {
     if (key=='a') {
@@ -216,7 +247,6 @@ void draw(){
     }
     if (key=='j') {
       keys1[4] = 8;
-      projectiles.add(new Projectile(p[0].xcor, p[0].ycor));
     }
     if (key=='k') {
       keys1[5] = 8;
@@ -236,13 +266,13 @@ void draw(){
     if(keyCode==RIGHT){
       keys2[3] = 8;
     }
-    if(keyCode==79){
+    if(keyCode==97){
       keys2[4] = 8;
     }
-    if(keyCode==80){
+    if(keyCode==98){
       keys2[5] = 8;
     }
-    if(keyCode==81){
+    if(keyCode==99){
       keys2[6] = 8;
     }
   }
@@ -281,13 +311,13 @@ void draw(){
     if(keyCode==RIGHT){
       keys2[3] = 0;
     }
-    if(keyCode==79){
+    if(keyCode==97){
       keys2[4] = 0;
     }
-    if(keyCode==80){
+    if(keyCode==98){
       keys2[5] = 0;
     }
-    if(keyCode==81){
+    if(keyCode==99){
       keys2[6] = 0;
     }
   }   

@@ -11,7 +11,7 @@ abstract class Player{
   void combo(String a){};
   void display(String player){}
   int xcor,ycor;
-  void punch(){};
+  void punch(Player other){};
   void damage(Player other, int d){};
   void setx(int n){};
   void sety(int n){};

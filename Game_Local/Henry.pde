@@ -10,12 +10,12 @@ class Henry extends Player{
     state = "walk";
     disp = new String[]{"bandit idle.png", "banditw1.png", "banditw2.png", "banditw3.png", "banditw4.png" };
   }
-  String[] arrow = new String[];
+ // String[] arrow = new String[1];
 
-  Projectile punch(boolean p){
-    punch = p;
-    return Projectile a = new Projectile(arrow, null, 30, 1, xcor, ycor, 5, true);
-  }
+  //Projectile punch(boolean p){
+   // punch = p;
+    //return Projectile a = new Projectile(arrow, null, 30, 1, xcor, ycor, 5, true);
+  //}
   
   void combo(byte[] input){
     if (input[4]==8 && input[5]==8 && input[6]==8){
