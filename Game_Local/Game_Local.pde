@@ -181,23 +181,23 @@ void draw(){
 
   void process(byte[] data) {
       if (data[0] == 8){
-        if(p[data[7]].xcor>40){
-          p[data[7]].setx(-7);
+        if(p[data[7]-1].xcor>40){
+          p[data[7]-1].setx(-7);
         }
       }
       if (data[1] == 8){
-        if(p[data[7]].ycor>500){
-          p[data[7]].sety(-4);
+        if(p[data[7]-1].ycor>500){
+          p[data[7]-1].sety(-4);
         }
       }
       if (data[2] == 8){
-        if(p[data[7]].ycor<650){
-          p[data[7]].sety(4);
+        if(p[data[7]-1].ycor<650){
+          p[data[7]-1].sety(4);
         }
       }
       if (data[3] == 8){
-        if(p[data[7]].xcor<1230){
-          p[data[7]].setx(7);
+        if(p[data[7]-1].xcor<1230){
+          p[data[7]-1].setx(7);
         }
       }
   }
@@ -224,6 +224,27 @@ void draw(){
     if (key=='l') {
       keys1[6] = 8;
     }
+    if(keyCode==LEFT ){
+      keys2[0] = 8;
+    }
+    if(keyCode==UP){
+      keys2[1] = 8;
+    }
+    if(keyCode==DOWN){
+      keys2[2] = 8;
+    }
+    if(keyCode==RIGHT){
+      keys2[3] = 8;
+    }
+    if(keyCode==79){
+      keys2[4] = 8;
+    }
+    if(keyCode==80){
+      keys2[5] = 8;
+    }
+    if(keyCode==81){
+      keys2[6] = 8;
+    }
   }
   void keyReleased() {
     if (key=='a') {
@@ -246,5 +267,27 @@ void draw(){
     }
     if (key=='l') {
       keys1[6] = 0;
+    }
+    
+    if(keyCode==LEFT ){
+      keys2[0] = 0;
+    }
+    if(keyCode==UP){
+      keys2[1] = 0;
+    }
+    if(keyCode==DOWN){
+      keys2[2] = 0;
+    }
+    if(keyCode==RIGHT){
+      keys2[3] = 0;
+    }
+    if(keyCode==79){
+      keys2[4] = 0;
+    }
+    if(keyCode==80){
+      keys2[5] = 0;
+    }
+    if(keyCode==81){
+      keys2[6] = 0;
     }
   }   
