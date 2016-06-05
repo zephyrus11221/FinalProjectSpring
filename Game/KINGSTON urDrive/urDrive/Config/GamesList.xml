@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+<Game Name = "Bejeweled 3" url = "http://www.popcap.com/games/bejeweled3?cid=FUHU_bj3_CA"  ImageName ="bj3.png" > </Game>
+<Game Name = "Tiger Woods PGA TOUR Online" url = "http://tigerwoodsonline.ea.com/?sourceid=TWO_kingston"  ImageName ="image003.png" > </Game>
+<Game Name = "Plants vs Zombies" url = "http://www.popcap.com/games/pvz?cid=FUHU_PvZ_CA"  ImageName ="pvz.png" > </Game>
+<Game Name = "Madden Superstars" url = "http://apps.facebook.com/maddennflsuperstars/?pf_ref=x1027_XX_FHU-1"  ImageName ="madden-superstars.png" > </Game>
+<Game Name = "Battlefield Play4Free" url = "http://www.battlefield.play4free.com/en?sourceid=Fuhu"  ImageName ="BFP4F_logo.png" > </Game>
+<Game Name = "Peggle" url = "http://www.popcap.com/games/peggle?cid=FUHU_Peg_CA"  ImageName ="peggle.png" > </Game>
+<Game Name = "Need for Speed World" url = "http://world.needforspeed.com"  ImageName ="NFSW.png" > </Game>
+<Game Name = "Zuma's Revenge" url = "http://www.popcap.com/games/zumasrevenge?cid=FUHU_ZumR_CA"  ImageName ="zumasrev.png" > </Game>
+<Game Name = "Dragon Age Journeys" url = "http://www.dragonagejourneys.com"  ImageName ="DAJ_Banner_128X128.png" > </Game>
+<Game Name = "Mahjongg Dark Dimensions" url = "http://www.greatdaygames.com/games/mahjongg-dimensions.aspx"  ImageName ="MJD.png" > </Game>
+<Game Name = "Freecell" url = "http://www.greatdaygames.com/games/freecell.aspx"  ImageName ="freecell.png" > </Game>
+<Game Name = "Mirror’s Edge 2D" url = "http://www.mirrorsedge2d.com"  ImageName ="ME2d-jump.png" > </Game>
+<Game Name = "Spider Solitaire" url = "http://www.greatdaygames.com/games/spider-solitaire.aspx"  ImageName ="spider-solitaire.png" > </Game>
+<Game Name = "Battlefield Heroes" url = "http://www.battlefieldheroes.com/en/frontpage/landingPage/a/Fuhu/createHeroFirst"  ImageName ="BFH_Logo.png" > </Game>
+<Game Name = "PGA TOUR Golf Challenge" url = "http://www.facebook.com/pgatourgolfchallenge/?ref=GC_kingston"  ImageName ="image002.png" > </Game>
+<Game Name = "Pool" url = "http://www.greatdaygames.com/games/pool.aspx"  ImageName ="pool.png" > </Game>
+<Game Name = "Word Search" url = "http://www.greatdaygames.com/games/word-search.aspx"  ImageName ="word-search.png" > </Game>
+<Game Name = "Lord of Ultima" url = "http://www.lordofultima.com?a=Fuhu"  ImageName ="LoU_app_Icon_blue.png" > </Game>
+<Game Name = "Book Worm" url = "http://www.popcap.com/games/bookworm?cid=FUHU_bw_CA"  ImageName ="bookworm.png" > </Game>
+<Game Name = "Chuzzle" url = "http://www.popcap.com/games/chuzzle?cid=FUHU_czl_CA"  ImageName ="chuzzle.png" > </Game>
+<Game Name = "Insaniquarium" url = "http://www.popcap.com/games/insaniquarium?cid=FUHU_Insan_CA"  ImageName ="insane.png" > </Game>
+<Game Name = "Escape Rosecliff Island" url = "http://www.popcap.com/games/rosecliff?cid=FUHU_eri_CA"  ImageName ="eri.png" > </Game>
+<Game Name = "Amazing Adventures the Caribbean Secret" url = "http://www.popcap.com/games/amazingadventures3?cid=FUHU_Aacs_CA"  ImageName ="amazad_carr.png" > </Game>
+<Game Name = "MPI London Caper" url = "http://www.popcap.com/games/mpi-la?cid=FUHU_MPIlc_CA"  ImageName ="mpilondon.png" > </Game>
+</Root>

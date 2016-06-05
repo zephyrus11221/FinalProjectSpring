@@ -8,7 +8,8 @@ class Henry extends Player{
     right = true;
     idle = false;
     state = "walk";
-    disp = new String[]{"bandit idle.png", "banditw1.png", "banditw2.png", "banditw3.png", "banditw4.png" };
+    disp = new String[]{"henry idle.png", "henryw1.png", "henryw2.png", "henryw3.png", "henryw4.png", "Henry arrow", "henry arrow 1"
+    , "henry arrow 2", "henry arrow 3", "henry arrow 4", "henry arrow 5", "henry arrow 6"};
   }
  // String[] arrow = new String[1];
 
@@ -22,10 +23,30 @@ class Henry extends Player{
     }
   }
   
-  void display(float x, float y, String player){
-    PImage bandit;
-    bandit = loadImage("bandit_s.jpg");
-    image(bandit,x,y,100,150);
-    
-  };
+  void display(String player){
+    if (health > 0) {
+      PImage henry;
+      if(idle){
+        henry = loadImage(disp[0]);
+      image(henry,xcor,ycor,120,135);
+      }
+      else if(state == "walk"){
+        boolean display;
+        int nTime = millis();
+        if(nTime-time>440){
+          time = millis();
+        }
+        display = true;
+        for(int x = 0; x<4; x++){
+          if(nTime-time<(110)*x && display){
+            display = false;
+            henry = loadImage(disp[x]);
+            //System.out.println(disp[x]);
+            image(henry,xcor,ycor,120,135);
+          
+          }
+        }
+      }
+    }
+  }
 }

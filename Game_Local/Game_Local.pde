@@ -89,7 +89,7 @@ void draw(){
         System.out.print(n+ " ");
       }
       
-     } //<>// //<>//
+     } //<>// //<>// //<>//
     //System.out.println("wOrks");
      if (input[0] == '1'){
       //System.out.println("wOrks");
@@ -114,7 +114,7 @@ void draw(){
     p = new Player[pNum];
     int x = p.length;
       for (int y = 0; y < x; y++) {
-      p[y] = new Bandit();
+      p[y] = new Henry();
   }  
     }
 */
@@ -130,8 +130,8 @@ void draw(){
       //c.write(new byte[]{'r'});
       combat = true;
       stage = "Map0";
-      p[0] = new Bandit();
-      p[1] = new Bandit();
+      p[0] = new Henry();
+      p[1] = new Henry();
     }
     if (key=='i'){
       stage="Instructions";
