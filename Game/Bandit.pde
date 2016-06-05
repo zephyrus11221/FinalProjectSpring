@@ -5,9 +5,13 @@ class Bandit extends Player{
     mana = 10;
     xcor = 100;
     ycor = 550;
+    right = true;
+    idle = false;
+    state = "walk";
+    disp = new String[]{"bandit idle.png", "banditw1.png", "banditw2.png", "banditw3.png", "banditw4.png" };
   }
-  void punch(){
-    damage(this,strength);
+  void punch(boolean p){
+    punch = p;
   }
   void special(){
     strength += 10;
@@ -20,10 +24,29 @@ class Bandit extends Player{
   }
   void display(String player){
     PImage bandit;
-    bandit = loadImage("bandit idle.png");
+    if(idle){
+      bandit = loadImage("bandit idle.png");
     image(bandit,xcor,ycor,120,135);
-    
+    }
+    else if(state == "walk"){
+      boolean display;
+      int nTime = millis();
+      if(nTime-time>330){
+        time = millis();
+      }
+      display = true;
+      for(int x = 0; x<4; x++){
+        if(nTime-time<(110)*x && display){
+          display = false;
+          bandit = loadImage(disp[x]);
+          System.out.println(disp[x]);
+          image(bandit,xcor,ycor,120,135);
+          
+        }
+      }
+    }
   }
+  
   void setx(int n){
     xcor += n;
   }  

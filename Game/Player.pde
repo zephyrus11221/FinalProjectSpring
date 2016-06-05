@@ -1,11 +1,12 @@
 abstract class Player{
   //Bandit, Jack, Henry, Davis
-  PImage[] disp;
+  String[] disp;
   int health;
   int strength;
   int mana;
-  int x, y;
-  boolean punch;
+  int x, y, time;
+  boolean punch, right, idle;
+  String state;
   
   void combo(String a){};
   void display(String player){}
