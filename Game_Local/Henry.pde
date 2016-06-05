@@ -17,12 +17,27 @@ class Henry extends Player{
    // punch = p;
     //return Projectile a = new Projectile(arrow, null, 30, 1, xcor, ycor, 5, true);
   //}
-  
+  void punch(Player other){
+    this.damage(other, ((int) (strength * Math.random())));
+  }
+  void special(){
+    strength += 10;
+    damage(this,strength);
+    strength -= 10;
+  }
+  void damage(Player other, int d) {
+    other.health -= d;
+  }
   void combo(byte[] input){
     if (input[4]==8 && input[5]==8 && input[6]==8){
     }
   }
-  
+    void setx(int n){
+    xcor += n;
+  }  
+  void sety(int n){
+    ycor += n;
+  }
   void display(String player){
     if (health > 0) {
       PImage henry;

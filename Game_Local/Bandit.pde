@@ -49,11 +49,11 @@ class Bandit extends Player{
       }
     }
   }
-  
-  void setx(int n){
+    void setx(int n){
     xcor += n;
   }  
   void sety(int n){
     ycor += n;
+
   }
 }
