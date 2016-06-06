@@ -49,27 +49,28 @@ class Henry extends Player{
         }else{          
           henry = loadImage("l"+disp[0]);
           image(henry,xcor,ycor,120,135);
+        } 
       }
       else if(state == "walk"){
         boolean display;
         int nTime = millis();
-        if(nTime-time>440){
-          time = millis();
-        }
-        display = true;
-        for(int x = 0; x<4; x++){
-          if(nTime-time<(110)*x && display){
-            display = false;        
-            if(right){
-              henry = loadImage(disp[0]);
-              image(henry,xcor,ycor,120,135);
-            }else{          
-              henry = loadImage("l"+disp[0]);
-              image(henry,xcor,ycor,120,135);
-            }
+        if(nTime-time>330){
+        time = millis(); 
+      }
+      display = true;
+      for(int x = 0; x<4; x++){
+        if(nTime-time<(110)*x && display){
+          display = false;        
+          if(right){
+            henry = loadImage(disp[0]);
+            image(henry,xcor,ycor,120,135);
+          }else{          
+            henry = loadImage("l"+disp[0]);
+            image(henry,xcor,ycor,120,135);
           }
         }
       }
     }
   }
+}
 }
