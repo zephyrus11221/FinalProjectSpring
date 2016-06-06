@@ -42,8 +42,12 @@ class Henry extends Player{
     if (health > 0) {
       PImage henry;
       if(idle){
-        henry = loadImage(disp[0]);
-      image(henry,xcor,ycor,120,135);
+        if(right){
+          henry = loadImage(disp[0]);
+          image(henry,xcor,ycor,120,135);
+        }else{          
+          henry = loadImage("l"+disp[0]);
+          image(henry,xcor,ycor,120,135);
       }
       else if(state == "walk"){
         boolean display;
@@ -54,11 +58,14 @@ class Henry extends Player{
         display = true;
         for(int x = 0; x<4; x++){
           if(nTime-time<(110)*x && display){
-            display = false;
-            henry = loadImage(disp[x]);
-            //System.out.println(disp[x]);
-            image(henry,xcor,ycor,120,135);
-          
+            display = false;        
+            if(right){
+              henry = loadImage(disp[0]);
+              image(henry,xcor,ycor,120,135);
+            }else{          
+              henry = loadImage("l"+disp[0]);
+              image(henry,xcor,ycor,120,135);
+            }
           }
         }
       }
