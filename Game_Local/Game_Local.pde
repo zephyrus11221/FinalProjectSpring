@@ -186,6 +186,7 @@ void draw(){
         if(p[data[7]-1].xcor>40){
           p[data[7]-1].setx(-7);
           p[data[7]-1].state = "walk";
+          p[data[7]-1].right = false;
         }
         
       }
@@ -205,6 +206,7 @@ void draw(){
         if(p[data[7]-1].xcor<1230){
           p[data[7]-1].setx(7);
           p[data[7]-1].state = "walk";
+          p[data[7]-1].right = true;
         }
       }
       if (p[0].xcor == p[1].xcor && p[0].ycor == p[1].ycor) {
