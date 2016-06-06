@@ -152,6 +152,8 @@ void draw(){
     for ( Player g : p) {
       g.display("hi");
     }
+    p[0].state = "walk";
+    p[1].state = "walk";
     //output[0] = (byte) pNum;
     //output[1] = 'B';
    
