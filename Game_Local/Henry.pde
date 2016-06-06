@@ -6,6 +6,7 @@ class Henry extends Player{
     this.xcor = xcor;
     this.ycor = ycor;
     right = face;
+    block = 3;
     idle = false;
     state = "walk";
     disp = new String[]{"henry idle.png", "henryw1.png", "henryw2.png", "henryw3.png", "henryw4.png", "Henry arrow", "henry arrow 1"

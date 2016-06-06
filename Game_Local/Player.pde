@@ -7,6 +7,7 @@ abstract class Player{
   int x, y, time;
   boolean punch, right, idle;
   String state;
+  int block;
   
   void combo(String a){};
   void display(String player){}
