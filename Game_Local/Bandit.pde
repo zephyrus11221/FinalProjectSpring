@@ -1,7 +1,7 @@
 class Bandit extends Player{
   Bandit(int xcor, int ycor, boolean face) {
     health = 100;
-    strength = 15;
+    strength = 10;
     mana = 10;
     this.xcor = xcor;
     this.ycor = ycor;

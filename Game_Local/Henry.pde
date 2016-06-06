@@ -1,7 +1,7 @@
 class Henry extends Player{
   Henry(int xcor,int ycor,boolean face) {
     health = 100;
-    strength = 10;
+    strength = 7;
     mana = 100;
     this.xcor = xcor;
     this.ycor = ycor;
@@ -9,8 +9,8 @@ class Henry extends Player{
     block = 3;
     idle = false;
     state = "walk";
-    disp = new String[]{"henry idle.png", "henryw1.png", "henryw2.png", "henryw3.png", "henryw4.png", "Henry arrow", "henry arrow 1"
-    , "henry arrow 2", "henry arrow 3", "henry arrow 4", "henry arrow 5", "henry arrow 6"};
+    disp = new String[]{"henry idle.png", "henryw1.png", "henryw2.png", "henryw3.png", "henryw4.png", "Henry arrow.png", "henry arrow 1.png"
+    , "henry arrow 2.png", "henry arrow 3.png", "henry arrow 4.png", "henry arrow 5.png", "henry arrow 6.png"};
   }
  // String[] arrow = new String[1];
 
@@ -30,10 +30,16 @@ class Henry extends Player{
     other.health -= d;
   }
   Projectile combo(byte[] input){
-    if(input[5]==8 && input[6]==8 && input[0]==8){
-      //return Projectile(new String[]{disp[6],disp[7],disp[8],disp[9],disp[10],disp[11]}, new String[], 30, -1, xcor, ycor, 20, false);
-      return new Projectile(new String[]{disp[6],disp[7],disp[8],disp[9],disp[10],disp[11]}, new String[0], 30, -1, xcor, ycor, 20, false);
+    if(input[5]==8 && input[6]==8 && input[0]==8 && mana > 30){      
+      println("working");
+      mana-=30;
+      return new Projectile(new String[]{disp[6],disp[7],disp[8],disp[9],disp[10],disp[11]}, new String[0], -35, -1, xcor, ycor, 20, false);
     }
+    else if(input[5]==8 && input[6]==8 && input[3]==8 && mana > 30){
+      mana-=30;
+      return new Projectile(new String[]{disp[6],disp[7],disp[8],disp[9],disp[10],disp[11]}, new String[0], 35, -1, xcor, ycor, 20, false);
+    }
+    
     return null;
   }
     void setx(int n){

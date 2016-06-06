@@ -57,11 +57,21 @@ class Projectile{
           //System.out.println(x);
           text(""+x, xCor, yCor);
         }else{
-          PImage p = loadImage(disp[x-1]);
-          image(p, xCor, yCor);
-          if (chase!=null){
-            PImage c = loadImage(chase[x-1]);
-            image(c, xCor, yCor);
+          if(velocity<0){
+            PImage p = loadImage("l"+disp[x-1]);
+            image(p, xCor, yCor);
+            if (chase!=null){
+              PImage c = loadImage("l"+chase[x-1]);
+              image(c, xCor, yCor);
+            }
+          }
+          else{
+            PImage p = loadImage(disp[x-1]);
+            image(p, xCor, yCor);
+            if (chase!=null){
+              PImage c = loadImage(chase[x-1]);
+              image(c, xCor, yCor);
+            }
           }
         }
       }

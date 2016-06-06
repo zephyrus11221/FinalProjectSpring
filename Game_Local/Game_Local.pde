@@ -19,7 +19,7 @@ Player[] p;
 int pNum = -1;
 
 int test = 0;
-
+int projectileCount = 0;
 float y=600;
 float x=640;
 
@@ -168,14 +168,18 @@ void draw(){
    // }
 
     //c.write(output);
-    System.out.println(p[0].health + " " + p[1].health);
+    //System.out.println(p[0].health + " " + p[1].health);
     if(projectiles!=null){
-      for (int i = 0; i<projectiles.size(); i++){
-        System.out.println("hi");
-        projectiles.get(i).display();
-        if(projectiles.get(i).xCor()>1280||projectiles.get(i).xCor()<0){
-          projectiles.remove(i);
-        }
+      System.out.println(projectiles.toString());
+      for (int i = 0; i<projectileCount; i++){
+        System.out.println(p[1].mana);
+        if (projectiles.get(i) != null) {
+          projectiles.get(i).display();
+          if(projectiles.get(i).xCor()>1280||projectiles.get(i).xCor()<0){
+            projectiles.remove(i);
+            projectileCount--;
+          }
+        }        
       }
     }
   }
@@ -261,8 +265,8 @@ void process(byte[] data) {
       }
     }
     else {
-      //run combo stuff here
-      p[data[7]-1].combo(data);
+      projectiles.add(p[data[7]-1].combo(data));
+      projectileCount++;
     }
     
   }
