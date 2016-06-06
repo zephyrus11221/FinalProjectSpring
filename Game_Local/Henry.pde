@@ -29,9 +29,7 @@ class Henry extends Player{
   void damage(Player other, int d) {
     other.health -= d;
   }
-  void combo(byte[] input){
-    if (input[4]==8 && input[5]==8 && input[6]==8){
-    }
+  void combo(Player other){
   }
     void setx(int n){
     xcor += n;

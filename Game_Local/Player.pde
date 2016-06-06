@@ -9,7 +9,7 @@ abstract class Player{
   String state;
   int block;
   
-  void combo(String a){};
+  void combo(Player other){};
   void display(String player){}
   int xcor,ycor;
   void punch(Player other){};

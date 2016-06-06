@@ -224,8 +224,12 @@ void draw(){
         }
       }
       if (data[4] == 8 && data[5] == 8 && data[6] == 8) {
-        //combo
-         projectiles.add(new Projectile(p[0].xcor, p[0].ycor));
+        if (data[7] == 1) {
+          p[data[7]-1].combo(p[1]);
+        }
+        if (data[7] == 2) {
+          p[data[7]-1].combo(p[0]);
+        }
       }
       else if (data[4] == 8) {
         //punch
