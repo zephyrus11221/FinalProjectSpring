@@ -29,7 +29,12 @@ class Henry extends Player{
   void damage(Player other, int d) {
     other.health -= d;
   }
-  void combo(Player other){
+  Projectile combo(byte[] input){
+    if(input[5]==8 && input[6]==8 && input[0]==8){
+      //return Projectile(new String[]{disp[6],disp[7],disp[8],disp[9],disp[10],disp[11]}, new String[], 30, -1, xcor, ycor, 20, false);
+      return new Projectile(new String[]{disp[6],disp[7],disp[8],disp[9],disp[10],disp[11]}, new String[0], 30, -1, xcor, ycor, 20, false);
+    }
+    return null;
   }
     void setx(int n){
     xcor += n;

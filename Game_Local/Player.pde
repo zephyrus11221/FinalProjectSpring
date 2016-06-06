@@ -9,7 +9,9 @@ abstract class Player{
   String state;
   int block;
   
-  void combo(Player other){};
+  Projectile combo(byte[] input){
+  return null;
+  }
   void display(String player){}
   int xcor,ycor;
   void punch(Player other){};

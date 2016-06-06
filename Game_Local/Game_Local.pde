@@ -89,7 +89,7 @@ void draw(){
         System.out.print(n+ " ");
       }
       
-     } //<>// //<>// //<>// //<>//
+     } //<>// //<>// //<>// //<>// //<>//
     //System.out.println("wOrks");
      if (input[0] == '1'){
       //System.out.println("wOrks");
@@ -181,7 +181,8 @@ void draw(){
   }
 }
 
-  void process(byte[] data) {
+void process(byte[] data) {
+    if (p[data[7]-1].combo(data)== null) {
       if (data[0] == 8){
         if(p[data[7]-1].xcor>40){
           p[data[7]-1].setx(-7);
@@ -223,15 +224,8 @@ void draw(){
           p[data[7]-1].setx(-7);
         }
       }
-      if (data[4] == 8 && data[5] == 8 && data[6] == 8) {
-        if (data[7] == 1) {
-          p[data[7]-1].combo(p[1]);
-        }
-        if (data[7] == 2) {
-          p[data[7]-1].combo(p[0]);
-        }
-      }
-      else if (data[4] == 8) {
+
+      if (data[4] == 8) {
         //punch
         if (data[7] == 1 && keys2[6]== 8 && p[1].block > 0) {
           p[1].block = p[1].block - 1;
@@ -264,7 +258,12 @@ void draw(){
       }
       else if (data[6] == 8) {
         //block
-      }      
+      }
+    }
+    else {
+      //run combo stuff here
+      p[data[7]-1].combo(data);
+    }
     
   }
   void keyPressed() {

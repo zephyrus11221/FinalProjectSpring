@@ -28,9 +28,9 @@ class Projectile{
     frames = disp.length;
   }
   
-  boolean die(int pX, int pY){
-    if (yCor+6>pY&&yCor-6<pY){
-      if (xCor+front>pX&&xCor-front<pX){
+  boolean die(Player p){
+    if (yCor+6>p.ycor&&yCor-6<p.ycor){
+      if (xCor+front>p.xcor&&xCor-front<p.xcor){
         disp = null;
         chase = null;
         return true;
