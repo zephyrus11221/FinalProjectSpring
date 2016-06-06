@@ -89,7 +89,7 @@ void draw(){
         System.out.print(n+ " ");
       }
       
-     } //<>// //<>// //<>//
+     } //<>// //<>// //<>// //<>//
     //System.out.println("wOrks");
      if (input[0] == '1'){
       //System.out.println("wOrks");
@@ -130,8 +130,8 @@ void draw(){
       //c.write(new byte[]{'r'});
       combat = true;
       stage = "Map0";
-      p[0] = new Henry();
-      p[1] = new Henry();
+      p[0] = new Bandit(100,550,true);
+      p[1] = new Henry(1180,550,false);
     }
     if (key=='i'){
       stage="Instructions";
@@ -183,21 +183,26 @@ void draw(){
       if (data[0] == 8){
         if(p[data[7]-1].xcor>40){
           p[data[7]-1].setx(-7);
+          p[data[7]-1].state = "walk";
         }
+        
       }
       if (data[1] == 8){
         if(p[data[7]-1].ycor>500){
           p[data[7]-1].sety(-4);
+          p[data[7]-1].state = "walk";
         }
       }
       if (data[2] == 8){
         if(p[data[7]-1].ycor<650){
           p[data[7]-1].sety(4);
+          p[data[7]-1].state = "walk";
         }
       }
       if (data[3] == 8){
         if(p[data[7]-1].xcor<1230){
           p[data[7]-1].setx(7);
+          p[data[7]-1].state = "walk";
         }
       }
       if (data[4] == 8 && data[5] == 8 && data[6] == 8) {
@@ -215,11 +220,13 @@ void draw(){
         else if (data[7] == 1) {
           if ( (abs(p[0].xcor - p[1].xcor) < 70) || (abs(p[0].ycor - p[1].ycor) < 70) ) {
             p[0].punch(p[1]);
+            p[0].state = "punch";
           }
         }
         else if (data[7] == 2) {
           if ( (abs(p[0].xcor - p[1].xcor) < 70) || (abs(p[0].ycor - p[1].ycor) < 70) ){
             p[1].punch(p[0]);
+            p[1].state = "punch";
           }
         }
       }

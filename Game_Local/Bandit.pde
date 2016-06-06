@@ -1,11 +1,11 @@
 class Bandit extends Player{
-  Bandit() {
+  Bandit(int xcor, int ycor, boolean face) {
     health = 100;
     strength = 15;
     mana = 10;
-    xcor = 100;
-    ycor = 550;
-    right = true;
+    this.xcor = xcor;
+    this.ycor = ycor;
+    right = face;
     idle = false;
     state = "walk";
     disp = new String[]{"bandit idle.png", "banditw1.png", "banditw2.png", "banditw3.png", "banditw4.png" };

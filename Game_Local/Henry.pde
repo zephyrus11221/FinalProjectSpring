@@ -1,11 +1,11 @@
 class Henry extends Player{
-  Henry() {
+  Henry(int xcor,int ycor,boolean face) {
     health = 100;
     strength = 10;
     mana = 100;
-    xcor = 100;
-    ycor = 550;
-    right = true;
+    this.xcor = xcor;
+    this.ycor = ycor;
+    right = face;
     idle = false;
     state = "walk";
     disp = new String[]{"henry idle.png", "henryw1.png", "henryw2.png", "henryw3.png", "henryw4.png", "Henry arrow", "henry arrow 1"
