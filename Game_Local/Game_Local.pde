@@ -238,15 +238,19 @@ void draw(){
           //punch blocked
         }
         else if (data[7] == 1) {
-          if ( (abs(p[0].xcor - p[1].xcor) < 70) && (abs(p[0].ycor - p[1].ycor) < 70) ) {
-            p[0].punch(p[1]);
-            p[0].state = "punch";
+          if ( (abs(p[0].xcor - p[1].xcor) < 70) && (abs(p[0].ycor - p[1].ycor) < 70)) {
+            if ( (p[0].xcor > p[1].xcor && !p[0].right) || (p[0].xcor < p[1].xcor && p[0].right) ) {
+              p[0].punch(p[1]);
+              p[0].state = "punch";
+            }
           }
         }
         else if (data[7] == 2) {
           if ( (abs(p[0].xcor - p[1].xcor) < 70) && (abs(p[0].ycor - p[1].ycor) < 70) ){
-            p[1].punch(p[0]);
-            p[1].state = "punch";
+            if ( (p[0].xcor > p[1].xcor && p[1].right) || (p[0].xcor < p[1].xcor && !p[1].right) ) {
+              p[1].punch(p[0]);
+              p[1].state = "punch";
+            }
           }
         }
       }
