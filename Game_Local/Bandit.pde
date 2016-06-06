@@ -28,8 +28,13 @@ class Bandit extends Player{
     if (health > 0) {
       PImage bandit;
       if(idle){
-        bandit = loadImage("bandit idle.png");
-      image(bandit,xcor,ycor,120,135);
+        if(right){
+          bandit = loadImage(disp[0]);
+          image(bandit,xcor,ycor,120,135);
+        }else{          
+          bandit = loadImage("l"+disp[0]);
+          image(bandit,xcor,ycor,120,135);
+        } 
       }
       else if(state == "walk"){
         boolean display;
@@ -41,10 +46,13 @@ class Bandit extends Player{
         for(int x = 0; x<4; x++){
           if(nTime-time<(110)*x && display){
             display = false;
-            bandit = loadImage(disp[x]);
-            //System.out.println(disp[x]);
-            image(bandit,xcor,ycor,120,135);
-            
+            if(right){
+              bandit = loadImage(disp[x]);
+              image(bandit,xcor,ycor,120,135);
+            }else{          
+              bandit = loadImage("l"+disp[x]);
+              image(bandit,xcor,ycor,120,135);
+            }
           }
         }
       }

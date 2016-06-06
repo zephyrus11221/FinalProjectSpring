@@ -62,10 +62,10 @@ class Henry extends Player{
         if(nTime-time<(110)*x && display){
           display = false;        
           if(right){
-            henry = loadImage(disp[0]);
+            henry = loadImage(disp[x]);
             image(henry,xcor,ycor,120,135);
           }else{          
-            henry = loadImage("l"+disp[0]);
+            henry = loadImage("l"+disp[x]);
             image(henry,xcor,ycor,120,135);
           }
         }
