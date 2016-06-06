@@ -6,6 +6,7 @@ class Bandit extends Player{
     this.xcor = xcor;
     this.ycor = ycor;
     right = face;
+    block = 3;
     idle = false;
     state = "walk";
     disp = new String[]{"bandit idle.png", "banditw1.png", "banditw2.png", "banditw3.png", "banditw4.png" };

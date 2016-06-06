@@ -152,6 +152,8 @@ void draw(){
     for ( Player g : p) {
       g.display("hi");
     }
+    p[0].state = "walk";
+    p[1].state = "walk";
     //output[0] = (byte) pNum;
     //output[1] = 'B';
    
@@ -166,7 +168,7 @@ void draw(){
    // }
 
     //c.write(output);
-    
+    System.out.println(p[0].health + " " + p[1].health);
     if(projectiles!=null){
       for (int i = 0; i<projectiles.size(); i++){
         System.out.println("hi");
@@ -205,38 +207,54 @@ void draw(){
           p[data[7]-1].state = "walk";
         }
       }
+      if (p[0].xcor == p[1].xcor && p[0].ycor == p[1].ycor) {
+        if (data[0] == 8) {
+          p[data[7]-1].setx(7);
+        }
+        if (data[1] == 8) {
+          p[data[7]-1].sety(4);
+        }
+        if (data[2] == 8) {
+          p[data[7]-1].sety(-4);
+        }
+        if (data[3] == 8) {
+          p[data[7]-1].setx(-7);
+        }
+      }
       if (data[4] == 8 && data[5] == 8 && data[6] == 8) {
         //combo
          projectiles.add(new Projectile(p[0].xcor, p[0].ycor));
       }
       else if (data[4] == 8) {
         //punch
-        if (data[7] == 1 && keys2[6]== 8) {
+        if (data[7] == 1 && keys2[6]== 8 && p[1].block > 0) {
+          p[1].block = p[1].block - 1;
           //punch blocked
         }
-        else if (data[7] == 2 && keys1[6]== 8) {
+        else if (data[7] == 2 && keys1[6]== 8 && p[0].block > 0) {
+          p[0].block = p[0].block - 1;
           //punch blocked
         }
         else if (data[7] == 1) {
-          if ( (abs(p[0].xcor - p[1].xcor) < 70) || (abs(p[0].ycor - p[1].ycor) < 70) ) {
+          if ( (abs(p[0].xcor - p[1].xcor) < 70) && (abs(p[0].ycor - p[1].ycor) < 70) ) {
             p[0].punch(p[1]);
             p[0].state = "punch";
           }
         }
         else if (data[7] == 2) {
-          if ( (abs(p[0].xcor - p[1].xcor) < 70) || (abs(p[0].ycor - p[1].ycor) < 70) ){
+          if ( (abs(p[0].xcor - p[1].xcor) < 70) && (abs(p[0].ycor - p[1].ycor) < 70) ){
             p[1].punch(p[0]);
             p[1].state = "punch";
           }
         }
       }
       else if (data[5] == 8) {
+        p[data[7]-1].state = "jumping";
         //jump
       }
       else if (data[6] == 8) {
         //block
-      }
-      
+      }      
     
   }
   void keyPressed() {
@@ -304,6 +322,7 @@ void draw(){
     }
     if (key=='l') {
       keys1[6] = 0;
+      p[0].block = 3;
     }
     
     if(keyCode==LEFT ){
@@ -326,5 +345,6 @@ void draw(){
     }
     if(keyCode==99){
       keys2[6] = 0;
+      p[1].block = 3;
     }
   }   
