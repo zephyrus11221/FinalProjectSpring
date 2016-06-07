@@ -273,6 +273,7 @@ void process(byte[] data) {
           time =millis();
           System.out.println("okay");
           ycor1 = p[data[7]-1].ycor;
+          println("state" + p[data[7]-1].state);
         }
         else {/*
           println(p[data[7]-1].xcor + " " + p[data[7]-1].ycor); 
@@ -291,7 +292,7 @@ void process(byte[] data) {
           if(data[0]==8){
             xv = -7;
           }
-          else if(data[2]==8){
+          else if(data[3]==8){
             xv = 7;
           }
           else{
@@ -300,10 +301,22 @@ void process(byte[] data) {
           p[data[7]-1].setx(xv);            
           p[data[7]-1].sety(yv[data[7]-1]);
           yv[data[7]-1]+=3;
-          if(p[data[7]-1].ycor > ycor1){
-            p[data[7]-1].sety(ycor1);
-            p[data[7]-1].state = "walk";
+          if(p[data[7]-1].xcor < 40) {
+            p[data[7]-1].xcor = 40;
           }
+          if(p[data[7]-1].xcor >1230) {
+            p[data[7]-1].xcor = 1230;
+          }
+          if(p[data[7]-1].ycor > ycor1){
+            System.out.println("magic");
+            println(p[data[7]-1].ycor);
+            println(ycor1);
+            p[data[7]-1].ycor = ycor1;
+            p[data[7]-1].state = "walk";
+            yv = new int[]{-36, -36};
+          }
+          println("state" + p[data[7]-1].state);
+        
           println(p[data[7]-1].xcor + " " + p[data[7]-1].ycor); 
         //jump
         }
@@ -311,7 +324,7 @@ void process(byte[] data) {
       else if (data[6] == 8) {
         //block
       }
-      else{
+      if (data[0] == 0 && data[1] == 0 && data[2] == 0 && data[3] == 0 && data[4] == 0 && data[5] == 0 && data[6] == 0) {
         p[data[7]-1].state = "idle";
       }
     }

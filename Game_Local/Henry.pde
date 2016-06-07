@@ -77,7 +77,7 @@ class Henry extends Player{
           image(henry,xcor,ycor,120,135);
         } 
       }
-      else if(state == "walk"){
+      else if(state == "walk" || state == "jumping"){
         boolean display;
         int nTime = millis();
         if(nTime-time>330){
