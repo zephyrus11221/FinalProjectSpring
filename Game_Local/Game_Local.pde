@@ -89,13 +89,13 @@ void draw(){
     c.clear();
 
       //System.out.println("wOrks");
-      println(); //<>// //<>//
+      println(); //<>// //<>// //<>//
       System.out.println("Player:" + pNum);
       for (byte n : input) {
         System.out.print(n+ " ");
       }
       
-     } //<>// //<>// //<>// //<>// //<>// //<>//
+     } //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     //System.out.println("wOrks");
      if (input[0] == '1'){
       //System.out.println("wOrks");
@@ -136,7 +136,7 @@ void draw(){
       //c.write(new byte[]{'r'});
       combat = true;
       stage = "Map0";
-      p[0] = new Bandit(100,550,true);
+      p[0] = new Henry(100,550,true);
       p[1] = new Henry(1180,550,false);
     }
     if (key=='i'){
@@ -145,11 +145,31 @@ void draw(){
   }
   if (stage.equals("Map0")){
     background(0,0,0);
-    PImage b1,b2,b3;
+    PImage b1,b2,b3,p1,p2;
     b1 = loadImage("back1.jpg");//794x101
     b2 = loadImage("back2.jpg");
     b3 = loadImage("back3.JPG");
     imageMode(CENTER);
+    if(p[0] instanceof Bandit){
+      p1 = loadImage(p[0].disp[11]);
+    }
+    else{
+      p1 = loadImage(p[0].disp[18]);
+    }
+    if(p[1] instanceof Bandit){
+      p2 = loadImage(p[1].disp[11]);
+    }
+    else{
+      p2 = loadImage(p[1].disp[18]);
+    }
+    image(p1, 100, 75);
+    image(p2, 700, 75);
+    fill(255, 0, 0);
+    rect(175, 60, p[0].health*2.5, 15);
+    rect(775, 60, p[1].health*2.5, 15);
+    fill(0, 0, 255);
+    rect(175, 80, p[0].mana*2.5, 15);
+    rect(775, 80, p[1].mana*2.5, 15);
     image(b1, 640, 300, 1300, 176);
     image(b3, 640, 850, 1300, 600);
     image(b2, 640, 500, 1300, 176);
@@ -165,7 +185,7 @@ void draw(){
       p[1].state = "walk";
     }
     regen++;
-    if (regen%4==0) {
+    if (regen%12==0) {
       if (p[0].health < 100) {
         p[0].health = p[0].health+1;
       }
@@ -173,7 +193,7 @@ void draw(){
         p[1].health = p[1].health+1;
       }
     }
-    if (regen%3==0) {
+    if (regen%8==0) {
       if (p[1].mana < 100) {
         p[1].mana = p[1].mana + 1;
       }

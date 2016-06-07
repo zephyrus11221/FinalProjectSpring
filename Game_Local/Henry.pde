@@ -15,7 +15,7 @@ class Henry extends Player{
     state = "walk";
     disp = new String[]{"henry idle.png", "henryw1.png", "henryw2.png", "henryw3.png", "henryw4.png", "Henry arrow.png", "henry arrow 1.png"
     , "henry arrow 2.png", "henry arrow 3.png", "henry arrow 4.png", "henry arrow 5.png", "henry arrow 6.png", "henryj.png", "henryb.png"
-    , "henryp1.png", "henryp2.png", "henryp3.png", "henryp4.png"};
+    , "henryp1.png", "henryp2.png", "henryp3.png", "henryp4.png", "henry_f.png"};
   }
  // String[] arrow = new String[1];
 

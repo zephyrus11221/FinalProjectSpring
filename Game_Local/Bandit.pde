@@ -12,7 +12,7 @@ class Bandit extends Player{
     idle = false;
     state = "walk";
     disp = new String[]{"bandit idle.png", "banditw1.png", "banditw2.png", "banditw3.png", "banditw4.png", "banditj.png", "banditb.png"
-    , "banditp1.png", "banditp2.png", "banditp3.png", "banditp4.png"};
+    , "banditp1.png", "banditp2.png", "banditp3.png", "banditp4.png", "bandit_f.png"};
   }
   void punch(Player other){
     int timeNow = millis();
