@@ -1,5 +1,7 @@
 # FinalProjectSpring
-This game is a remake of Little Fighter 2. It is located in the "Game" directory. This version is networked, so in order to begin the game, the Game Server must be run, in its respective folder. You move with the wasd keys, and the jkl keys are attack, jump, and block, respectively, and you must defeat the other players to win.
+This game is a remake of Little Fighter 2. It is located in the "Game" directory. This version is networked*, so in order to begin the game, the Game Server must be run, in its respective folder. You move with the wasd keys, and the jkl keys are attack, jump, and block, respectively, and you must defeat the other players to win.
+
+*We have dropped the network portion because the amount of information cannot be processed efficiently. The game is now in the Game_Local folder.
 
 Required libraries: Minim
 
@@ -49,6 +51,21 @@ Bugs: Same as before.
 
 --------------------------------------------------
 
-Day 8: Player movement finished.
+Day 8: Player movement finished, Combos setup. Punching in specific directions.
 
 Bugs: Player count 
+
+--------------------------------------------------
+
+Day 9: Henry's combos setup
+
+Bugs: no player detection
+
+--------------------------------------------------
+
+Day 10: Combos complete, Jumping complete. Punch delay. Player detection.
+Health Bars, Sprites edited.
+
+Bugs: None so far
+
+--------------------------------------------------
