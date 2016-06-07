@@ -202,7 +202,12 @@ void draw(){
             projectiles.remove(i);
             projectileCount--;
           }
-        }        
+          for (Player x : p) {
+            if (projectiles.get(i).die(x)) {
+              projectiles.remove(i);
+              projectileCount--;
+              
+        }
       }
     }
   }
