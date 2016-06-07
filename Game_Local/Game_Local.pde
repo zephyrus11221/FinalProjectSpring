@@ -40,7 +40,7 @@ PImage startScreen;
 PFont title;
 
 float velocity=8;
-
+int xv;
 float rotate=PI/100;
 
 boolean[] ATKDown;
@@ -57,7 +57,7 @@ int xcor2;
 int ycor2;
 int[] yv = new int[]{-36, -36};
 int what = 1;
-
+int regen = 0;
 void setup(){
   size(1280, 720);
   startScreen = loadImage("menu.jpg");
@@ -164,6 +164,19 @@ void draw(){
     if (p[1].state != "jumping") {
       p[1].state = "walk";
     }
+    regen++;
+    if (regen%4==0) {
+      p[0].health = p[0].health+1;
+      p[1].health = p[1].health+1;
+    }
+    if (regen%3==0) {
+      if (p[1].mana < 100) {
+        p[1].mana = p[1].mana + 1;
+      }
+    }
+    if (p[0].health < 0 || p[1].health < 0) {
+      stage = "end";
+    }
     //output[0] = (byte) pNum;
     //output[1] = 'B';
    
@@ -193,6 +206,23 @@ void draw(){
       }
     }
   }
+  if (stage.equals("end")){
+    background(10,30,100);
+    image(startScreen, 409, 100, 462, 123);
+    textAlign(CENTER);
+    fill(255, 255, 255);
+    textSize(36);
+    if (p[1].health < 0) {
+      text("Bandit Wins!", 640, 300);
+    }
+    else {
+     text("Henry Wins!", 640, 300);
+    }
+    text("Press W to play again", 640, 450);
+    if (key=='w') {
+    setup();
+    }
+   }
 }
 
 void process(byte[] data) {
@@ -274,6 +304,15 @@ void process(byte[] data) {
           System.out.println("okay");
           ycor1 = p[data[7]-1].ycor;
           println("state" + p[data[7]-1].state);
+          if(data[0]==8){
+            xv = -7;
+          }
+          else if(data[3]==8){
+            xv = 7;
+          }
+          else{
+            xv =0;
+          }
         }
         else {/*
           println(p[data[7]-1].xcor + " " + p[data[7]-1].ycor); 
@@ -288,7 +327,6 @@ void process(byte[] data) {
             p[data[7]-1].sety(ycor1);
             p[data[7]-1].state = "walk";
           }*/
-          int xv;
           if(data[0]==8){
             xv = -7;
           }
@@ -324,7 +362,7 @@ void process(byte[] data) {
       else if (data[6] == 8) {
         //block
       }
-      if (data[0] == 0 && data[1] == 0 && data[2] == 0 && data[3] == 0 && data[4] == 0 && data[5] == 0 && data[6] == 0) {
+      if (data[0] == 0 && data[1] == 0 && data[2] == 0 && data[3] == 0 && data[4] == 0 && data[5] == 0 && data[6] == 0 &&  p[data[7]-1].state != "jumping") {
         p[data[7]-1].state = "idle";
       }
     }
