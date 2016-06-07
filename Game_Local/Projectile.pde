@@ -7,6 +7,7 @@ class Projectile{
   boolean stun; //if projectile is able to be stopped
   boolean test = false; //not a real projectile if true
   boolean display;
+  int damage;
   
   Projectile(int x, int y){
     test = true;
@@ -16,8 +17,9 @@ class Projectile{
     frames = 5;
   }
   
-  Projectile(String[] main, String[] chase, int vel, int hp, int x, int y, int size, boolean _stun){
+  Projectile(String[] main, String[] ch, int vel, int hp, int x, int y, int size, boolean _stun, int d){
     disp = main;
+    chase = ch;
     velocity = vel;
     health = hp;
     xCor = x;

@@ -89,13 +89,13 @@ void draw(){
     c.clear();
 
       //System.out.println("wOrks");
-      println(); //<>//
+      println(); //<>// //<>//
       System.out.println("Player:" + pNum);
       for (byte n : input) {
         System.out.print(n+ " ");
       }
       
-     } //<>// //<>// //<>// //<>// //<>//
+     } //<>// //<>// //<>// //<>// //<>// //<>//
     //System.out.println("wOrks");
      if (input[0] == '1'){
       //System.out.println("wOrks");
@@ -206,7 +206,8 @@ void draw(){
             if (projectiles.get(i).die(x)) {
               projectiles.remove(i);
               projectileCount--;
-              
+            }
+          }
         }
       }
     }
@@ -227,8 +228,9 @@ void draw(){
     if (key=='w') {
     setup();
     }
-   }
+  }
 }
+
 
 void process(byte[] data) {
   Projectile x = p[data[7]-1].combo(data);
@@ -365,6 +367,7 @@ void process(byte[] data) {
         }
       }
       else if (data[6] == 8) {
+        p[data[7]-1].state = "block";
         //block
       }
       if (data[0] == 0 && data[1] == 0 && data[2] == 0 && data[3] == 0 && data[4] == 0 && data[5] == 0 && data[6] == 0 &&  p[data[7]-1].state != "jumping") {
