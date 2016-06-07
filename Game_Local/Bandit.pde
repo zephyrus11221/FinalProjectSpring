@@ -1,4 +1,5 @@
 class Bandit extends Player{
+  int punchTime;
   Bandit(int xcor, int ycor, boolean face) {
     health = 100;
     strength = 10;
@@ -7,12 +8,19 @@ class Bandit extends Player{
     this.ycor = ycor;
     right = face;
     block = 3;
+    punchTime = 0;
     idle = false;
     state = "walk";
     disp = new String[]{"bandit idle.png", "banditw1.png", "banditw2.png", "banditw3.png", "banditw4.png" };
   }
   void punch(Player other){
-    this.damage(other, ((int) (strength * Math.random())));
+    int timeNow = millis();
+    println("okay");
+    if (timeNow - punchTime > 100) {
+      System.out.println("punch");
+      this.damage(other, ((int) (strength * Math.random())));
+      punchTime = timeNow;
+    }
   }
   void special(){
     strength += 10;
@@ -58,7 +66,7 @@ class Bandit extends Player{
       }
     }
   }
-    void setx(int n){
+    void setx(int n){ 
     xcor += n;
   }  
   void sety(int n){

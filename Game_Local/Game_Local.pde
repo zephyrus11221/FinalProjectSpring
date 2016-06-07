@@ -170,9 +170,9 @@ void draw(){
     //c.write(output);
     //System.out.println(p[0].health + " " + p[1].health);
     if(projectiles!=null){
-      System.out.println(projectiles.toString());
+      //System.out.println(projectiles.toString());
       for (int i = 0; i<projectileCount; i++){
-        System.out.println(p[1].mana);
+        //System.out.println(p[1].mana);
         if (projectiles.get(i) != null) {
           projectiles.get(i).display();
           if(projectiles.get(i).xCor()>1280||projectiles.get(i).xCor()<0){
@@ -186,7 +186,8 @@ void draw(){
 }
 
 void process(byte[] data) {
-    if (p[data[7]-1].combo(data)== null) {
+  Projectile x = p[data[7]-1].combo(data);
+    if (x== null) {
       if (data[0] == 8){
         if(p[data[7]-1].xcor>40){
           p[data[7]-1].setx(-7);
@@ -251,6 +252,7 @@ void process(byte[] data) {
           if ( (abs(p[0].xcor - p[1].xcor) < 70) && (abs(p[0].ycor - p[1].ycor) < 70) ){
             if ( (p[0].xcor > p[1].xcor && p[1].right) || (p[0].xcor < p[1].xcor && !p[1].right) ) {
               p[1].punch(p[0]);
+              
               p[1].state = "punch";
             }
           }
@@ -265,10 +267,9 @@ void process(byte[] data) {
       }
     }
     else {
-      projectiles.add(p[data[7]-1].combo(data));
+      projectiles.add(x);
       projectileCount++;
-    }
-    
+    } 
   }
   void keyPressed() {
     if (key=='a') {

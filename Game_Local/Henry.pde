@@ -1,4 +1,5 @@
 class Henry extends Player{
+  int projTime;
   Henry(int xcor,int ycor,boolean face) {
     health = 100;
     strength = 7;
@@ -7,6 +8,7 @@ class Henry extends Player{
     this.ycor = ycor;
     right = face;
     block = 3;
+    projTime = 0;
     idle = false;
     state = "walk";
     disp = new String[]{"henry idle.png", "henryw1.png", "henryw2.png", "henryw3.png", "henryw4.png", "Henry arrow.png", "henry arrow 1.png"
@@ -30,16 +32,20 @@ class Henry extends Player{
     other.health -= d;
   }
   Projectile combo(byte[] input){
-    if(input[5]==8 && input[6]==8 && input[0]==8 && mana > 30){      
-      println("working");
-      mana-=30;
-      return new Projectile(new String[]{disp[6],disp[7],disp[8],disp[9],disp[10],disp[11]}, new String[0], -35, -1, xcor, ycor, 20, false);
+    int nowTime = millis();
+    if (nowTime - projTime > 1000) {
+      if(input[5]==8 && input[6]==8 && input[0]==8 && mana > 0){      
+        println("working");
+        projTime = nowTime;
+        mana-=30;
+        return new Projectile(new String[]{disp[6],disp[7],disp[8],disp[9],disp[10],disp[11]}, new String[0], -35, -1, xcor, ycor, 20, false);
+      }
+      else if(input[5]==8 && input[6]==8 && input[3]==8 && mana > 0){
+        mana-=30;
+        projTime = nowTime;
+        return new Projectile(new String[]{disp[6],disp[7],disp[8],disp[9],disp[10],disp[11]}, new String[0], 35, -1, xcor, ycor, 20, false);
+      }
     }
-    else if(input[5]==8 && input[6]==8 && input[3]==8 && mana > 30){
-      mana-=30;
-      return new Projectile(new String[]{disp[6],disp[7],disp[8],disp[9],disp[10],disp[11]}, new String[0], 35, -1, xcor, ycor, 20, false);
-    }
-    
     return null;
   }
     void setx(int n){
