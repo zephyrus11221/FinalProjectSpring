@@ -32,7 +32,7 @@ class Projectile{
   }
   
   boolean die(Player p){
-    if (yCor+6>p.ycor&&yCor-6<p.ycor){
+    if (yCor+10>p.ycor&&yCor-10<p.ycor){
       if (xCor+front>p.xcor&&xCor-front<p.xcor){
         disp = null;
         chase = null;

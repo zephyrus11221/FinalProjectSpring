@@ -203,6 +203,58 @@ void draw(){
     for ( Player g : p) {
       g.display("hi");
     }
+    //output[0] = (byte) pNum;
+    //output[1] = 'B';
+   
+    //for (int x = 0; x < keys.length; x++) {
+     // output[x+2] = keys[x];
+    //}
+//    text(""+p[0].xcor+", "+p[0].ycor, 600, 500);
+//    System.out.println(output);  
+    //System.out.println();
+    //for (byte v : output) {
+   //   System.out.print(v+ " ");
+   // }
+
+    //c.write(output);
+    //System.out.println(p[0].health + " " + p[1].health);
+    if(projectiles!=null){
+      //System.out.println(projectiles.toString());
+      for (int i = 0; i<projectileCount; i++){
+        //System.out.println(p[1].mana);
+        if (projectiles.get(i) != null) {
+          projectiles.get(i).display();
+          if (projectiles.get(i).die(p[0])) {
+            println(p[0].block);
+          
+            if(p[0].state!="block" || p[0].block ==0){
+              p[0].health = p[0].health-projectiles.get(i).damage;
+            }
+            else{
+              p[0].block= p[0].block-1;
+            }
+            projectiles.remove(i);
+            projectileCount--;
+            
+          }
+          else if (projectiles.get(i).die(p[1])) {
+            if (p[1].state!="block" || p[1].block == 0){
+              p[1].health = p[1].health-projectiles.get(i).damage;
+            }
+            else{
+              p[1].block= p[1].block-1;
+            }
+            projectiles.remove(i);
+            projectileCount--;
+          }
+          else if(projectiles.get(i).xCor()>1280||projectiles.get(i).xCor()<0){
+              projectiles.remove(i);
+              projectileCount--;
+           }
+        }
+      }
+    }
+    
     if (p[0].state != "jumping") {
       p[0].state = "walk";
     }
@@ -225,48 +277,6 @@ void draw(){
     }
     if (p[0].health < 0 || p[1].health < 0) {
       stage = "end";
-    }
-    //output[0] = (byte) pNum;
-    //output[1] = 'B';
-   
-    //for (int x = 0; x < keys.length; x++) {
-     // output[x+2] = keys[x];
-    //}
-//    text(""+p[0].xcor+", "+p[0].ycor, 600, 500);
-//    System.out.println(output);  
-    //System.out.println();
-    //for (byte v : output) {
-   //   System.out.print(v+ " ");
-   // }
-
-    //c.write(output);
-    System.out.println(p[0].health + " " + p[1].health);
-    if(projectiles!=null){
-      //System.out.println(projectiles.toString());
-      for (int i = 0; i<projectileCount; i++){
-        //System.out.println(p[1].mana);
-        if (projectiles.get(i) != null) {
-          projectiles.get(i).display();
-          if (projectiles.get(i).die(p[0])) {
-            if(!(p[0].state=="block")){
-              p[0].health = p[0].health-projectiles.get(i).damage;
-              projectiles.remove(i);
-              projectileCount--;
-            }
-          }
-          else if (projectiles.get(i).die(p[1])) {
-            if (!(p[1].state=="block")){
-              p[1].health = p[1].health-projectiles.get(i).damage;
-              projectiles.remove(i);
-              projectileCount--;
-            }
-          }
-          else if(projectiles.get(i).xCor()>1280||projectiles.get(i).xCor()<0){
-              projectiles.remove(i);
-              projectileCount--;
-           }
-        }
-      }
     }
   }
   if (stage.equals("end")){
