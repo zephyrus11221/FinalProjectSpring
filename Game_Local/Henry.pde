@@ -1,5 +1,6 @@
 class Henry extends Player{
   int projTime;
+  int punchTime;
   Henry(int xcor,int ycor,boolean face) {
     health = 100;
     strength = 7;
@@ -9,6 +10,7 @@ class Henry extends Player{
     right = face;
     block = 3;
     projTime = 0;
+    punchTime = 0;
     idle = false;
     state = "walk";
     disp = new String[]{"henry idle.png", "henryw1.png", "henryw2.png", "henryw3.png", "henryw4.png", "Henry arrow.png", "henry arrow 1.png"
@@ -21,7 +23,16 @@ class Henry extends Player{
     //return Projectile a = new Projectile(arrow, null, 30, 1, xcor, ycor, 5, true);
   //}
   void punch(Player other){
-    this.damage(other, ((int) (strength * Math.random())));
+    int timeNow = millis();
+    println("okay");
+    if (timeNow - punchTime > 100) {
+      System.out.println("punch");
+      this.damage(other, ((int) (strength * Math.random())));
+      punchTime = timeNow;
+    }
+    else {
+      state = "walk";
+    }
   }
   void special(){
     strength += 10;

@@ -21,6 +21,9 @@ class Bandit extends Player{
       this.damage(other, ((int) (strength * Math.random())));
       punchTime = timeNow;
     }
+    else {
+      state = "walk";
+    }
   }
   void special(){
     strength += 10;
