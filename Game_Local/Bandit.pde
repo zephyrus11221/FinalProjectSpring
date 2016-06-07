@@ -23,7 +23,7 @@ class Bandit extends Player{
       punchTime = timeNow;
     }
     else {
-      state = "walk";
+      state = "idle";
     }
   }
   void special(){

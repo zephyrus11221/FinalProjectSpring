@@ -166,8 +166,12 @@ void draw(){
     }
     regen++;
     if (regen%4==0) {
-      p[0].health = p[0].health+1;
-      p[1].health = p[1].health+1;
+      if (p[0].health < 100) {
+        p[0].health = p[0].health+1;
+      }
+      if (p[1].health < 100) {
+        p[1].health = p[1].health+1;
+      }
     }
     if (regen%3==0) {
       if (p[1].mana < 100) {
@@ -191,23 +195,22 @@ void draw(){
    // }
 
     //c.write(output);
-    //System.out.println(p[0].health + " " + p[1].health);
+    System.out.println(p[0].health + " " + p[1].health);
     if(projectiles!=null){
       //System.out.println(projectiles.toString());
       for (int i = 0; i<projectileCount; i++){
         //System.out.println(p[1].mana);
         if (projectiles.get(i) != null) {
           projectiles.get(i).display();
-          if(projectiles.get(i).xCor()>1280||projectiles.get(i).xCor()<0){
-            projectiles.remove(i);
-            projectileCount--;
-          }
-          for (Player x : p) {
-            if (projectiles.get(i).die(x)) {
+          if (projectiles.get(i).die(p[0])) {
+              p[0].health = p[0].health-projectiles.get(i).damage;
               projectiles.remove(i);
               projectileCount--;
-            }
           }
+          else if(projectiles.get(i).xCor()>1280||projectiles.get(i).xCor()<0){
+              projectiles.remove(i);
+              projectileCount--;
+           }
         }
       }
     }
@@ -298,7 +301,7 @@ void process(byte[] data) {
         else if (data[7] == 2) {
           if ( (abs(p[0].xcor - p[1].xcor) < 70) && (abs(p[0].ycor - p[1].ycor) < 70) ){
             if ( (p[0].xcor > p[1].xcor && p[1].right) || (p[0].xcor < p[1].xcor && !p[1].right) ) {
-              p[0].state = "punch";
+              p[1].state = "punch";
               p[1].punch(p[0]);
             }
           }
@@ -308,9 +311,9 @@ void process(byte[] data) {
         if ( p[data[7]-1].state != "jumping") {
           p[data[7]-1].state = "jumping";
           time =millis();
-          System.out.println("okay");
+          //System.out.println("okay");
           ycor1 = p[data[7]-1].ycor;
-          println("state" + p[data[7]-1].state);
+          //println("state" + p[data[7]-1].state);
           if(data[0]==8){
             xv = -7;
           }
@@ -353,16 +356,16 @@ void process(byte[] data) {
             p[data[7]-1].xcor = 1230;
           }
           if(p[data[7]-1].ycor > ycor1){
-            System.out.println("magic");
-            println(p[data[7]-1].ycor);
-            println(ycor1);
+            //System.out.println("magic");
+            //println(p[data[7]-1].ycor);
+            //println(ycor1);
             p[data[7]-1].ycor = ycor1;
             p[data[7]-1].state = "walk";
             yv = new int[]{-36, -36};
           }
-          println("state" + p[data[7]-1].state);
+          //println("state" + p[data[7]-1].state);
         
-          println(p[data[7]-1].xcor + " " + p[data[7]-1].ycor); 
+          //println(p[data[7]-1].xcor + " " + p[data[7]-1].ycor); 
         //jump
         }
       }

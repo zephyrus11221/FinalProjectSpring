@@ -28,6 +28,7 @@ class Projectile{
     stun=_stun;
     time= millis();
     frames = disp.length;
+    damage = d;
   }
   
   boolean die(Player p){
