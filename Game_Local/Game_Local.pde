@@ -227,6 +227,11 @@ void draw(){
               projectiles.remove(i);
               projectileCount--;
           }
+          else if (projectiles.get(i).die(p[1])) {
+              p[1].health = p[1].health-projectiles.get(i).damage;
+              projectiles.remove(i);
+              projectileCount--;
+          }
           else if(projectiles.get(i).xCor()>1280||projectiles.get(i).xCor()<0){
               projectiles.remove(i);
               projectileCount--;
@@ -242,10 +247,10 @@ void draw(){
     fill(255, 255, 255);
     textSize(36);
     if (p[1].health < 0) {
-      text("Bandit Wins!", 640, 300);
+      text("Player 1 Wins!", 640, 300);
     }
     else {
-     text("Henry Wins!", 640, 300);
+     text("Plahyer 2 Wins!", 640, 300);
     }
     text("Press W to play again", 640, 450);
     if (key=='w') {
