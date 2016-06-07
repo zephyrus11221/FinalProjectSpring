@@ -89,13 +89,13 @@ void draw(){
     c.clear();
 
       //System.out.println("wOrks");
-      println(); //<>// //<>// //<>//
+      println(); //<>// //<>// //<>// //<>//
       System.out.println("Player:" + pNum);
       for (byte n : input) {
         System.out.print(n+ " ");
       }
       
-     } //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+     } //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     //System.out.println("wOrks");
      if (input[0] == '1'){
       //System.out.println("wOrks");
@@ -136,11 +136,36 @@ void draw(){
       //c.write(new byte[]{'r'});
       combat = true;
       stage = "Map0";
-      p[0] = new Henry(100,550,true);
+      p[0] = new Bandit(100,550,true);
       p[1] = new Henry(1180,550,false);
     }
     if (key=='i'){
       stage="Instructions";
+    }
+  }
+  if (stage.equals("Instructions")){
+    background(10,30,100);
+    image(startScreen, 409, 50, 462, 123);
+    textAlign(CENTER);
+    fill(255, 255, 255);
+    textSize(36);
+    text("Press R to begin", 640, 200);
+    text("Player 1 controls:",300, 300);
+    text("WASD movement",300, 350);
+    text("J attack", 300, 400);
+    text("K jump", 300, 450);
+    text("L block", 300, 500);
+    text("Player 2 controls:",950, 300);
+    text("Arrow Keys movement",950, 350);
+    text("Numpad 1 attack", 950, 400);
+    text("Numpad 2 jump", 950, 450);
+    text("Numpad 3 block", 950, 500);
+    if (key=='r') {
+      //c.write(new byte[]{'r'});
+      combat = true;
+      stage = "Map0";
+      p[0] = new Henry(100,550,true);
+      p[1] = new Henry(1180,550,false);
     }
   }
   if (stage.equals("Map0")){
@@ -207,7 +232,7 @@ void draw(){
     //for (int x = 0; x < keys.length; x++) {
      // output[x+2] = keys[x];
     //}
-    text(""+p[0].xcor+", "+p[0].ycor, 600, 500);
+//    text(""+p[0].xcor+", "+p[0].ycor, 600, 500);
 //    System.out.println(output);  
     //System.out.println();
     //for (byte v : output) {
@@ -223,14 +248,18 @@ void draw(){
         if (projectiles.get(i) != null) {
           projectiles.get(i).display();
           if (projectiles.get(i).die(p[0])) {
+            if(!(p[0].state=="block")){
               p[0].health = p[0].health-projectiles.get(i).damage;
               projectiles.remove(i);
               projectileCount--;
+            }
           }
           else if (projectiles.get(i).die(p[1])) {
+            if (!(p[1].state=="block")){
               p[1].health = p[1].health-projectiles.get(i).damage;
               projectiles.remove(i);
               projectileCount--;
+            }
           }
           else if(projectiles.get(i).xCor()>1280||projectiles.get(i).xCor()<0){
               projectiles.remove(i);
@@ -250,7 +279,7 @@ void draw(){
       text("Player 1 Wins!", 640, 300);
     }
     else {
-     text("Plahyer 2 Wins!", 640, 300);
+     text("Player 2 Wins!", 640, 300);
     }
     text("Press W to play again", 640, 450);
     if (key=='w') {
