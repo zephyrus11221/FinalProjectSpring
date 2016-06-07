@@ -38,7 +38,7 @@ class Bandit extends Player{
   void display(String player){
     if (health > 0) {
       PImage bandit;
-      if(idle){
+      if(state.equals("idle")){
         if(right){
           bandit = loadImage(disp[0]);
           image(bandit,xcor,ycor,120,135);

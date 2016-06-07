@@ -22,7 +22,7 @@ int test = 0;
 int projectileCount = 0;
 float y=600;
 float x=640;
-float gravity = 12;
+float gravity = 2;
 int time = 0;
 AudioPlayer player;
 Minim minim;//audio context
@@ -55,6 +55,9 @@ int xcor1;
 int ycor1;
 int xcor2;
 int ycor2;
+int[] yv = new int[]{-36, -36};
+int what = 1;
+
 void setup(){
   size(1280, 720);
   startScreen = loadImage("menu.jpg");
@@ -86,7 +89,7 @@ void draw(){
     c.clear();
 
       //System.out.println("wOrks");
-      println();
+      println(); //<>//
       System.out.println("Player:" + pNum);
       for (byte n : input) {
         System.out.print(n+ " ");
@@ -271,16 +274,33 @@ void process(byte[] data) {
           System.out.println("okay");
           ycor1 = p[data[7]-1].ycor;
         }
-        else {
+        else {/*
           println(p[data[7]-1].xcor + " " + p[data[7]-1].ycor); 
           float timeNow = millis();
           float velocityIx = 7;
-          float velocityIy = -1;
+          float velocityIy = -35;
           float angleI = 70;
           p[data[7]-1].setx((int) (velocityIx*(timeNow/1000.0)) );
           println( (int) (velocityIy*(timeNow/1000.0)*sin(angleI) - .5*gravity*pow((timeNow/1000),2)) +ycor1);
             p[data[7]-1].sety( (int) (velocityIy*(timeNow/1000.0) - .5*gravity*pow((timeNow/1000),2)) );
           if ( p[data[7]-1].ycor > ycor1) {
+            p[data[7]-1].sety(ycor1);
+            p[data[7]-1].state = "walk";
+          }*/
+          int xv;
+          if(data[0]==8){
+            xv = -7;
+          }
+          else if(data[2]==8){
+            xv = 7;
+          }
+          else{
+            xv =0;
+          }
+          p[data[7]-1].setx(xv);            
+          p[data[7]-1].sety(yv[data[7]-1]);
+          yv[data[7]-1]+=3;
+          if(p[data[7]-1].ycor > ycor1){
             p[data[7]-1].sety(ycor1);
             p[data[7]-1].state = "walk";
           }
@@ -290,6 +310,9 @@ void process(byte[] data) {
       }
       else if (data[6] == 8) {
         //block
+      }
+      else{
+        p[data[7]-1].state = "idle";
       }
     }
     else {

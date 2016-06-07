@@ -68,7 +68,7 @@ class Henry extends Player{
   void display(String player){
     if (health > 0) {
       PImage henry;
-      if(idle){
+      if(state.equals("idle")){
         if(right){
           henry = loadImage(disp[0]);
           image(henry,xcor,ycor,120,135);
