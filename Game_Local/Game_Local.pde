@@ -22,7 +22,8 @@ int test = 0;
 int projectileCount = 0;
 float y=600;
 float x=640;
-
+float gravity = 12;
+int time = 0;
 AudioPlayer player;
 Minim minim;//audio context
 
@@ -52,6 +53,8 @@ boolean combat;
 //character coordinates
 int xcor1;
 int ycor1;
+int xcor2;
+int ycor2;
 void setup(){
   size(1280, 720);
   startScreen = loadImage("menu.jpg");
@@ -152,8 +155,12 @@ void draw(){
     for ( Player g : p) {
       g.display("hi");
     }
-    p[0].state = "walk";
-    p[1].state = "walk";
+    if (p[0].state != "jumping") {
+      p[0].state = "walk";
+    }
+    if (p[1].state != "jumping") {
+      p[1].state = "walk";
+    }
     //output[0] = (byte) pNum;
     //output[1] = 'B';
    
@@ -189,7 +196,7 @@ void process(byte[] data) {
   Projectile x = p[data[7]-1].combo(data);
     if (x== null) {
       if (data[0] == 8){
-        if(p[data[7]-1].xcor>40){
+        if(p[data[7]-1].xcor>40 && p[data[7]-1].state != "jumping"){
           p[data[7]-1].setx(-7);
           p[data[7]-1].state = "walk";
           p[data[7]-1].right = false;
@@ -197,25 +204,25 @@ void process(byte[] data) {
         
       }
       if (data[1] == 8){
-        if(p[data[7]-1].ycor>500){
+        if(p[data[7]-1].ycor>500 && p[data[7]-1].state != "jumping"){
           p[data[7]-1].sety(-4);
           p[data[7]-1].state = "walk";
         }
       }
       if (data[2] == 8){
-        if(p[data[7]-1].ycor<650){
+        if(p[data[7]-1].ycor<650 && p[data[7]-1].state != "jumping"){
           p[data[7]-1].sety(4);
           p[data[7]-1].state = "walk";
         }
       }
       if (data[3] == 8){
-        if(p[data[7]-1].xcor<1230){
+        if(p[data[7]-1].xcor<1230 && p[data[7]-1].state != "jumping"){
           p[data[7]-1].setx(7);
           p[data[7]-1].state = "walk";
           p[data[7]-1].right = true;
         }
       }
-      if (p[0].xcor == p[1].xcor && p[0].ycor == p[1].ycor) {
+      if (p[0].xcor == p[1].xcor && p[0].ycor == p[1].ycor && p[data[7]-1].state != "jumping") {
         if (data[0] == 8) {
           p[data[7]-1].setx(7);
         }
@@ -230,7 +237,7 @@ void process(byte[] data) {
         }
       }
 
-      if (data[4] == 8) {
+      if (data[4] == 8 && p[data[7]-1].state != "jumping") {
         //punch
         if (data[7] == 1 && keys2[6]== 8 && p[1].block > 0) {
           p[1].block = p[1].block - 1;
@@ -257,9 +264,29 @@ void process(byte[] data) {
           }
         }
       }
-      else if (data[5] == 8) {
-        p[data[7]-1].state = "jumping";
+      else if (data[5] == 8 || p[data[7]-1].state == "jumping") {
+        if ( p[data[7]-1].state != "jumping") {
+          p[data[7]-1].state = "jumping";
+          time =millis();
+          System.out.println("okay");
+          ycor1 = p[data[7]-1].ycor;
+        }
+        else {
+          println(p[data[7]-1].xcor + " " + p[data[7]-1].ycor); 
+          float timeNow = millis();
+          float velocityIx = 7;
+          float velocityIy = -1;
+          float angleI = 70;
+          p[data[7]-1].setx((int) (velocityIx*(timeNow/1000.0)) );
+          println( (int) (velocityIy*(timeNow/1000.0)*sin(angleI) - .5*gravity*pow((timeNow/1000),2)) +ycor1);
+            p[data[7]-1].sety( (int) (velocityIy*(timeNow/1000.0) - .5*gravity*pow((timeNow/1000),2)) );
+          if ( p[data[7]-1].ycor > ycor1) {
+            p[data[7]-1].sety(ycor1);
+            p[data[7]-1].state = "walk";
+          }
+          println(p[data[7]-1].xcor + " " + p[data[7]-1].ycor); 
         //jump
+        }
       }
       else if (data[6] == 8) {
         //block
